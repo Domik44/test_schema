@@ -24143,6 +24143,44 @@
               },
               "nullable": true
             },
+            "leftArea": {
+              "type": "array",
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ApiCardDatabaseTemplate"
+                  },
+                  {
+                    "$ref": "#/components/schemas/ApiCardInlineDatabaseTemplate"
+                  },
+                  {
+                    "$ref": "#/components/schemas/ChartDatabaseTemplate"
+                  },
+                  {
+                    "$ref": "#/components/schemas/SectionTitleDatabaseTemplate"
+                  },
+                  {
+                    "$ref": "#/components/schemas/SplitterDatabaseTemplate"
+                  },
+                  {
+                    "$ref": "#/components/schemas/PanelDatabaseTemplate"
+                  },
+                  {
+                    "$ref": "#/components/schemas/WordCloudDatabaseTemplate"
+                  },
+                  {
+                    "$ref": "#/components/schemas/RawValueDatabaseTemplate"
+                  },
+                  {
+                    "$ref": "#/components/schemas/NamedComponentDatabaseTemplate"
+                  },
+                  {
+                    "$ref": "#/components/schemas/HeaderlessTextareaDatabaseTemplate"
+                  }
+                ]
+              },
+              "nullable": true
+            },
             "rightArea": {
               "type": "array",
               "items": {
