@@ -24110,9 +24110,6 @@
               "items": {
                 "anyOf": [
                   {
-                    "$ref": "#/components/schemas/ApiTableDatabaseTemplate"
-                  },
-                  {
                     "$ref": "#/components/schemas/ApiCardDatabaseTemplate"
                   },
                   {
