@@ -27671,143 +27671,141 @@
           "additionalProperties": false
         },
         "PkgComponentVM": {
-          "required": [
-            "key"
-          ],
-          "type": "object",
-          "properties": {
-            "key": {
-              "minLength": 1,
-              "type": "string"
-            },
-            "template": {
-              "type": "object",
-              "items": {
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/ApiCardDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/ApiCardInlineDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/ApiTableDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/ApplicationCardDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/ApplicationCardsDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/ApplicationDataDictionaryCardDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/ApplicationRepositoryCardDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/AttributesDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/BinaryValueDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/ButtonLinkDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/ChartDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/ChildListDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/CodeTableLabelDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/CodeTableLabelUserDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/DatabaseSettingsTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/HeaderlessTextareaDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/LastActivityDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/LengthStatisticsDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/MultiRelationDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/NamedComponentDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/PanelDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/PipelineRunDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/RawValueDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/RelationAttributesDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/RelationsDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/SampleDataDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/SectionTitleDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/SearchDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/SimpleRelationsDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/SpaceCardDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/SpaceCards2DatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/SpaceCardsDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/SplitterDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/TabAttributesDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/TabTableDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/TableOfContentsDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/TabsDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/WordCloudDatabaseTemplate"
-                  },
-                  {
-                    "$ref": "#/components/schemas/WrapperDatabaseTemplate"
-                  }
-                ]
-              },
-              "nullable": true
-            }
+        "required": [
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "key": {
+            "minLength": 1,
+            "type": "string"
           },
-          "additionalProperties": false
+          "template": {
+            "type": "object",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ApiCardDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/ApiCardInlineDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/ApiTableDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/ApplicationCardDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/ApplicationCardsDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/ApplicationDataDictionaryCardDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/ApplicationRepositoryCardDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/AttributesDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/BinaryValueDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/ButtonLinkDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/ChartDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/ChildListDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/CodeTableLabelDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/CodeTableLabelUserDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/DatabaseSettingsTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/HeaderlessTextareaDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/LastActivityDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/LengthStatisticsDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/MultiRelationDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/NamedComponentDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/PanelDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/PipelineRunDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/RawValueDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/RelationAttributesDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/RelationsDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/SampleDataDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/SectionTitleDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/SearchDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/SimpleRelationsDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/SpaceCardDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/SpaceCards2DatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/SpaceCardsDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/SplitterDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/TabAttributesDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/TabTableDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/TableOfContentsDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/TabsDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/WordCloudDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/WrapperDatabaseTemplate"
+              }
+            ],
+            "nullable": true
+          }
         },
+        "additionalProperties": false
+      },
         "PkgRCommentTypeCategoryApplicationVM": {
           "required": [
             "applicationKey",
