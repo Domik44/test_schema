@@ -29736,7 +29736,45 @@
         "additionalProperties": false
       },
       "PkgNotificationTemplateVM": {
+        "required": [
+          "key",
+          "notificationChannelKey",
+          "notificationTypeKey",
+          "titleTemplate"
+        ],
         "type": "object",
+        "anyOf": [
+          {
+            "required": [
+              "descriptionHtmlTemplate"
+            ],
+            "properties": {
+              "notificationChannelKey": {
+                "enum": [
+                  "email",
+                  "grouped_email"
+                ],
+                "type": "string"
+              },
+              "descriptionHtmlTemplate": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "properties": {
+              "notificationChannelKey": {
+                "not": {
+                  "enum": [
+                    "email",
+                    "grouped_email"
+                  ],
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
         "properties": {
           "descriptionHtmlTemplate": {
             "type": "string",
@@ -29876,34 +29914,6 @@
             "type": "string"
           }
         },
-        "required": [
-          "key",
-          "notificationChannelKey",
-          "notificationTypeKey",
-          "titleTemplate"
-        ],
-        "anyOf": [
-          {
-            "properties": {
-              "notificationChannelKey": {
-                "enum": [
-                  "email",
-                  "grouped_email"
-                ]
-              }
-            },
-            "required": ["descriptionHtmlTemplate"]
-          },
-          {
-            "properties": {
-              "notificationChannelKey": {
-                "not": {
-                  "enum": ["email", "grouped_email"]
-                }
-              }
-            }
-          }
-        ],
         "additionalProperties": false
       },
       "PkgIconVM": {
