@@ -29754,7 +29754,6 @@
             ],
             "properties": {
               "notificationChannelKey": {
-                "minLength": 1,
                 "enum": [
                   "email",
                   "grouped_email"
@@ -29763,17 +29762,6 @@
               },
               "descriptionHtmlTemplate": {
                 "type": "string"
-              }
-            }
-          },
-          {
-            "properties": {
-              "notificationChannelKey": {
-                "minLength": 1,
-                  "enum": [
-                    "web_socket"
-                  ],
-                  "type": "string"
               }
             }
           }
@@ -29806,15 +29794,15 @@
             "type": "string",
             "nullable": true
           },
-          // "notificationChannelKey": {
-          //   "minLength": 1,
-          //   "enum": [
-          //     "web_socket",
-          //     "email",
-          //     "grouped_email"
-          //   ],
-          //   "type": "string"
-          // },
+          "notificationChannelKey": {
+            "minLength": 1,
+            "enum": [
+              "web_socket",
+              "email",
+              "grouped_email"
+            ],
+            "type": "string"
+          },
           "notificationTypeKey": {
             "minLength": 1,
             "enum": [
