@@ -29747,6 +29747,35 @@
           "titleTemplate"
         ],
         "type": "object",
+        "anyOf": [
+          {
+            "required": [
+              "descriptionHtmlTemplate"
+            ],
+            "properties": {
+              "notificationChannelKey": {
+                "enum": [
+                  "email",
+                  "grouped_email"
+                ],
+                "type": "string"
+              },
+              "descriptionHtmlTemplate": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "properties": {
+              "notificationChannelKey": {
+                "enum": [
+                  "web_socket"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
         "properties": {
           "descriptionHtmlTemplate": {
             "type": "string",
@@ -29886,22 +29915,7 @@
             "type": "string"
           }
         },
-        "additionalProperties": false,
-        "if": {
-          "properties": {
-            "notificationChannelKey": {
-              "enum": [
-                "email",
-                "grouped_email"
-              ]
-            }
-          }
-        },
-        "then": {
-          "required": [
-            "descriptionHtmlTemplate"
-          ]
-        }
+        "additionalProperties": false
       },
       "PkgIconVM": {
         "required": [
