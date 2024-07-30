@@ -29740,173 +29740,183 @@
         "additionalProperties": false
       },
       "PkgNotificationTemplateVM": {
+    "required": [
+      "key",
+      "notificationChannelKey",
+      "notificationTypeKey",
+      "titleTemplate"
+    ],
+    "type": "object",
+    "anyOf": [
+      {
         "required": [
-          "key",
-          "notificationChannelKey",
-          "notificationTypeKey",
-          "titleTemplate"
-        ],
-        "type": "object",
-        "anyOf": [
-          {
-            "required": [
-              "descriptionHtmlTemplate"
-            ],
-            "properties": {
-              "notificationChannelKey": {
-                "enum": [
-                  "email",
-                  "grouped_email"
-                ],
-                "type": "string"
-              },
-              "descriptionHtmlTemplate": {
-                "type": "string"
-              }
-            }
-          }
+          "descriptionHtmlTemplate"
         ],
         "properties": {
-          "descriptionHtmlTemplate": {
-            "type": "string",
-            "nullable": true
-          },
-          "descriptionTemplate": {
-            "type": "string",
-            "nullable": true
-          },
-          "enabled": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "key": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "moduleKey": {
-            "enum": [
-              "dictionary",
-              "glossary",
-              "hidden",
-              "branching",
-              "simple_flow"
-            ],
-            "type": "string",
-            "nullable": true
-          },
           "notificationChannelKey": {
-            "minLength": 1,
             "enum": [
-              "web_socket",
               "email",
               "grouped_email"
             ],
             "type": "string"
           },
-          "notificationTypeKey": {
-            "minLength": 1,
-            "enum": [
-              "user_assigned_to_object_attribute",
-              "child_object_created",
-              "object_modified",
-              "concept_shared",
-              "concept_remove_sharing",
-              "concept_applied",
-              "concept_applied_by_creator",
-              "your_concept_was_applied",
-              "user_added_to_group",
-              "user_removed_from_group",
-              "task_finished",
-              "user_assigned_to_space_attribute",
-              "space_modified",
-              "task_updated",
-              "space_request_access",
-              "object_share",
-              "user_object_tag",
-              "user_comment_tag",
-              "user_space_tag",
-              "user_application_tag",
-              "merge_request_resolved",
-              "merge_request_approved",
-              "merge_request_disapproved",
-              "merge_request_started_propagating",
-              "model_owner_has_changed",
-              "model_version_changes_approved",
-              "model_version_changes_disapproved",
-              "model_version_changes_started_propagating",
-              "user_object_relation_assigned",
-              "user_object_relation_unassigned",
-              "object_workflow_state_has_changed",
-              "registration",
-              "registration_failed_dawiso",
-              "registration_failed_user",
-              "forgotten_password",
-              "pwd_metadata_load_finished",
-              "user_object_relation_assigned_in_app",
-              "user_object_relation_unassigned_in_app",
-              "user_object_relation_assigned_in_space",
-              "user_object_relation_unassigned_in_space",
-              "objects_export_started",
-              "objects_export_finished",
-              "objects_export_failed",
-              "refresh_frontend",
-              "grouped_notification",
-              "import_object_added",
-              "import_object_modified",
-              "import_object_deleted",
-              "import_started",
-              "import_finished",
-              "refresh_numbering_started",
-              "refresh_numbering_finished",
-              "refresh_numbering_failed",
-              "object_all_users_workflow_has_changed",
-              "comment_added",
-              "user_import_finished",
-              "user_import_failed",
-              "report_import_progress",
-              "db_proc_started",
-              "db_proc_object_added",
-              "db_proc_object_updated",
-              "db_proc_object_deleted",
-              "db_proc_finished",
-              "bulk_edit_started",
-              "bulk_edit_finished",
-              "bulk_delete_started",
-              "bulk_delete_finished",
-              "package_delete_progress",
-              "package_version_install_progress",
-              "package_version_validation_progress",
-              "package_version_rollback_progress",
-              "attribute_edit",
-              "object_relation_add",
-              "object_relation_delete",
-              "notification_threshold_overflow",
-              "ingestion_report_progress",
-              "attribute_value_changed",
-              "marketplace_package_version_install_progress",
-              "marketplace_package_delete_progress",
-              "bulk_edit_info",
-              "master_hash_update"
-            ],
-            "type": "string"
-          },
-          "state": {
-            "enum": [
-              "active",
-              "inactive",
-              "in-validation",
-              "hidden"
-            ],
-            "type": "string",
-            "nullable": true
-          },
-          "titleTemplate": {
-            "minLength": 1,
+          "descriptionHtmlTemplate": {
             "type": "string"
           }
-        },
-        "additionalProperties": false
+        }
       },
+      {
+        "properties": {
+          "notificationChannelKey": {
+            "enum": [
+              "web_socket"
+            ],
+            "type": "string"
+          }
+        }
+      }
+    ],
+    "properties": {
+      "descriptionHtmlTemplate": {
+        "type": "string",
+        "nullable": true
+      },
+      "descriptionTemplate": {
+        "type": "string",
+        "nullable": true
+      },
+      "enabled": {
+        "type": "boolean",
+        "nullable": true
+      },
+      "key": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "moduleKey": {
+        "enum": [
+          "dictionary",
+          "glossary",
+          "hidden",
+          "branching",
+          "simple_flow"
+        ],
+        "type": "string",
+        "nullable": true
+      },
+      "notificationChannelKey": {
+        "minLength": 1,
+        "enum": [
+          "web_socket",
+          "email",
+          "grouped_email"
+        ],
+        "type": "string"
+      },
+      "notificationTypeKey": {
+        "minLength": 1,
+        "enum": [
+          "user_assigned_to_object_attribute",
+          "child_object_created",
+          "object_modified",
+          "concept_shared",
+          "concept_remove_sharing",
+          "concept_applied",
+          "concept_applied_by_creator",
+          "your_concept_was_applied",
+          "user_added_to_group",
+          "user_removed_from_group",
+          "task_finished",
+          "user_assigned_to_space_attribute",
+          "space_modified",
+          "task_updated",
+          "space_request_access",
+          "object_share",
+          "user_object_tag",
+          "user_comment_tag",
+          "user_space_tag",
+          "user_application_tag",
+          "merge_request_resolved",
+          "merge_request_approved",
+          "merge_request_disapproved",
+          "merge_request_started_propagating",
+          "model_owner_has_changed",
+          "model_version_changes_approved",
+          "model_version_changes_disapproved",
+          "model_version_changes_started_propagating",
+          "user_object_relation_assigned",
+          "user_object_relation_unassigned",
+          "object_workflow_state_has_changed",
+          "registration",
+          "registration_failed_dawiso",
+          "registration_failed_user",
+          "forgotten_password",
+          "pwd_metadata_load_finished",
+          "user_object_relation_assigned_in_app",
+          "user_object_relation_unassigned_in_app",
+          "user_object_relation_assigned_in_space",
+          "user_object_relation_unassigned_in_space",
+          "objects_export_started",
+          "objects_export_finished",
+          "objects_export_failed",
+          "refresh_frontend",
+          "grouped_notification",
+          "import_object_added",
+          "import_object_modified",
+          "import_object_deleted",
+          "import_started",
+          "import_finished",
+          "refresh_numbering_started",
+          "refresh_numbering_finished",
+          "refresh_numbering_failed",
+          "object_all_users_workflow_has_changed",
+          "comment_added",
+          "user_import_finished",
+          "user_import_failed",
+          "report_import_progress",
+          "db_proc_started",
+          "db_proc_object_added",
+          "db_proc_object_updated",
+          "db_proc_object_deleted",
+          "db_proc_finished",
+          "bulk_edit_started",
+          "bulk_edit_finished",
+          "bulk_delete_started",
+          "bulk_delete_finished",
+          "package_delete_progress",
+          "package_version_install_progress",
+          "package_version_validation_progress",
+          "package_version_rollback_progress",
+          "attribute_edit",
+          "object_relation_add",
+          "object_relation_delete",
+          "notification_threshold_overflow",
+          "ingestion_report_progress",
+          "attribute_value_changed",
+          "marketplace_package_version_install_progress",
+          "marketplace_package_delete_progress",
+          "bulk_edit_info",
+          "master_hash_update"
+        ],
+        "type": "string"
+      },
+      "state": {
+        "enum": [
+          "active",
+          "inactive",
+          "in-validation",
+          "hidden"
+        ],
+        "type": "string",
+        "nullable": true
+      },
+      "titleTemplate": {
+        "minLength": 1,
+        "type": "string"
+      }
+    },
+    "additionalProperties": false
+  },
       "PkgIconVM": {
         "required": [
           "categoryKey",
