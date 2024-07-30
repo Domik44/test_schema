@@ -29764,6 +29764,19 @@
                 "type": "string"
               }
             }
+          },
+          {
+            "properties": {
+              "notificationChannelKey": {
+                "not": {
+                  "enum": [
+                    "email",
+                    "grouped_email"
+                  ],
+                  "type": "string"
+                }
+              }
+            }
           }
         ],
         "properties": {
