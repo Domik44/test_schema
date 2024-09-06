@@ -23037,7 +23037,6 @@
             "type": "string"
           },
           "uuid": {
-            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
             "type": "string",
             "format": "uuid"
           }
@@ -30460,7 +30459,8 @@
           "uuid": {
             "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "x-errorMessage": "The UUID must be a valid GUID in the format 8-4-4-4-12 hexadecimal digits (e.g., 123e4567-e89b-12d3-a456-426614174000)."
           }
         },
         "additionalProperties": false
