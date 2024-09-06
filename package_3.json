@@ -2957,6 +2957,7 @@
                       "disable_duplicate_validation_for_spaceapp",
                       "move_object_based_on_role",
                       "force_confirmation_after_object_move",
+                      "copy_paste_as_plaintext_like",
                       "is_application_data_dictionary",
                       "is_application_code_tables",
                       "is_application_dawiso_objects",
@@ -3328,6 +3329,7 @@
                       "disable_duplicate_validation_for_spaceapp",
                       "move_object_based_on_role",
                       "force_confirmation_after_object_move",
+                      "copy_paste_as_plaintext_like",
                       "is_application_data_dictionary",
                       "is_application_code_tables",
                       "is_application_dawiso_objects",
@@ -3968,9 +3970,20 @@
           "enumKeyType": {
             "minLength": 1,
             "enum": [
+              "application",
+              "objectType",
+              "space",
               "attribute",
               "relation",
-              "userRelation"
+              "userRelation",
+              "codelist",
+              "modelChanges",
+              "script",
+              "mr_data",
+              "workflowState",
+              "creator",
+              "addRelation",
+              "domainTypes"
             ],
             "type": "string"
           },
@@ -4074,9 +4087,20 @@
           "enumKeyType": {
             "minLength": 1,
             "enum": [
+              "application",
+              "objectType",
+              "space",
               "attribute",
               "relation",
-              "userRelation"
+              "userRelation",
+              "codelist",
+              "modelChanges",
+              "script",
+              "mr_data",
+              "workflowState",
+              "creator",
+              "addRelation",
+              "domainTypes"
             ],
             "type": "string"
           },
@@ -4169,9 +4193,20 @@
           "enumKeyType": {
             "minLength": 1,
             "enum": [
+              "application",
+              "objectType",
+              "space",
               "attribute",
               "relation",
-              "userRelation"
+              "userRelation",
+              "codelist",
+              "modelChanges",
+              "script",
+              "mr_data",
+              "workflowState",
+              "creator",
+              "addRelation",
+              "domainTypes"
             ],
             "type": "string"
           },
@@ -4418,7 +4453,8 @@
                         "is_relation_space_of",
                         "is_relation_in_space",
                         "is_not_presented_in_changes",
-                        "can_be_shown_in_diagram"
+                        "can_be_shown_in_diagram",
+                        "is_domain_of"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -4644,7 +4680,8 @@
                         "is_relation_space_of",
                         "is_relation_in_space",
                         "is_not_presented_in_changes",
-                        "can_be_shown_in_diagram"
+                        "can_be_shown_in_diagram",
+                        "is_domain_of"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -4773,7 +4810,8 @@
                         "is_relation_space_of",
                         "is_relation_in_space",
                         "is_not_presented_in_changes",
-                        "can_be_shown_in_diagram"
+                        "can_be_shown_in_diagram",
+                        "is_domain_of"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -4868,6 +4906,7 @@
                         "is_relation_in_space",
                         "is_not_presented_in_changes",
                         "can_be_shown_in_diagram",
+                        "is_domain_of",
                         "fullness_score_value"
                       ],
                       "type": "string",
@@ -4995,7 +5034,8 @@
                       "is_relation_space_of",
                       "is_relation_in_space",
                       "is_not_presented_in_changes",
-                      "can_be_shown_in_diagram"
+                      "can_be_shown_in_diagram",
+                      "is_domain_of"
                     ],
                     "type": "string",
                     "readOnly": true
@@ -5101,7 +5141,8 @@
                       "is_relation_space_of",
                       "is_relation_in_space",
                       "is_not_presented_in_changes",
-                      "can_be_shown_in_diagram"
+                      "can_be_shown_in_diagram",
+                      "is_domain_of"
                     ],
                     "type": "string",
                     "readOnly": true
@@ -7958,6 +7999,10 @@
             "type": "boolean",
             "nullable": true
           },
+          "isDataForBackend": {
+            "type": "boolean",
+            "nullable": true
+          },
           "maxLength": {
             "type": "integer",
             "format": "int32",
@@ -7992,6 +8037,10 @@
         "type": "object",
         "properties": {
           "bulkEditable": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isDataForBackend": {
             "type": "boolean",
             "nullable": true
           },
@@ -8031,6 +8080,10 @@
         "type": "object",
         "properties": {
           "clearNewLine": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isDataForBackend": {
             "type": "boolean",
             "nullable": true
           },
@@ -8074,6 +8127,10 @@
         "type": "object",
         "properties": {
           "bulkEditable": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isDataForBackend": {
             "type": "boolean",
             "nullable": true
           },
@@ -8135,6 +8192,10 @@
             "nullable": true
           },
           "clearNewLine": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "isDataForBackend": {
             "type": "boolean",
             "nullable": true
           },
@@ -8663,7 +8724,8 @@
                 "addSpace",
                 "addObject",
                 "export",
-                "delete"
+                "delete",
+                "generateDomains"
               ],
               "type": "string"
             },
@@ -8696,7 +8758,8 @@
                 "addSpace",
                 "addObject",
                 "export",
-                "delete"
+                "delete",
+                "generateDomains"
               ],
               "type": "string"
             },
@@ -8760,13 +8823,13 @@
       },
       "SectionTitleActionTypeFormUserRelationTypeDatabaseTemplate": {
         "required": [
-          "key",
+          "apiDataKey",
           "title",
           "type"
         ],
         "type": "object",
         "properties": {
-          "key": {
+          "apiDataKey": {
             "type": "string"
           },
           "title": {
@@ -8784,14 +8847,14 @@
       },
       "SectionTitleActionTypeFormRelationTypeDatabaseTemplate": {
         "required": [
-          "key",
+          "apiDataKey",
           "relationTypeKey",
           "title",
           "type"
         ],
         "type": "object",
         "properties": {
-          "key": {
+          "apiDataKey": {
             "type": "string"
           },
           "relationTypeKey": {
@@ -8812,8 +8875,8 @@
       },
       "SectionTitleActionTypeFormAttributeTypeDatabaseTemplate": {
         "required": [
+          "apiDataKey",
           "elementType",
-          "key",
           "title",
           "type"
         ],
@@ -8823,6 +8886,9 @@
             "type": "string",
             "nullable": true
           },
+          "apiDataKey": {
+            "type": "string"
+          },
           "elementType": {
             "enum": [
               "is_checkbox",
@@ -8830,9 +8896,6 @@
               "is_single_line",
               "api"
             ],
-            "type": "string"
-          },
-          "key": {
             "type": "string"
           },
           "title": {
@@ -8872,7 +8935,8 @@
                 "addSpace",
                 "addObject",
                 "export",
-                "delete"
+                "delete",
+                "generateDomains"
               ],
               "type": "string"
             },
@@ -8964,6 +9028,10 @@
           },
           "hide": {
             "$ref": "#/components/schemas/HideRelationsSettings"
+          },
+          "isConditional": {
+            "type": "boolean",
+            "nullable": true
           },
           "levels": {
             "type": "integer",
@@ -9341,6 +9409,13 @@
             "type": "string",
             "nullable": true
           },
+          "parameters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ParameterVM"
+            },
+            "nullable": true
+          },
           "settings": {
             "$ref": "#/components/schemas/PanelDatabaseSettings"
           },
@@ -9674,14 +9749,6 @@
       "CodeTableLabelUserModelValue": {
         "type": "object",
         "properties": {
-          "elementType": {
-            "enum": [
-              "list",
-              "search"
-            ],
-            "type": "string",
-            "nullable": true
-          },
           "title": {
             "type": "string",
             "nullable": true
@@ -9747,14 +9814,6 @@
             "items": {
               "type": "string"
             },
-            "nullable": true
-          },
-          "elementType": {
-            "enum": [
-              "list",
-              "search"
-            ],
-            "type": "string",
             "nullable": true
           },
           "objectTypeKey": {
@@ -14282,6 +14341,13 @@
             "type": "string",
             "nullable": true
           },
+          "parameters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ParameterVM"
+            },
+            "nullable": true
+          },
           "settings": {
             "$ref": "#/components/schemas/PanelDatabaseSettings"
           },
@@ -14457,6 +14523,13 @@
           },
           "componentId": {
             "type": "string",
+            "nullable": true
+          },
+          "parameters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ParameterVM"
+            },
             "nullable": true
           },
           "settings": {
@@ -15294,6 +15367,10 @@
           "hide": {
             "$ref": "#/components/schemas/HideRelationsSettings"
           },
+          "isConditional": {
+            "type": "boolean",
+            "nullable": true
+          },
           "levels": {
             "type": "integer",
             "format": "int32",
@@ -15424,6 +15501,10 @@
           },
           "hide": {
             "$ref": "#/components/schemas/HideRelationsSettings"
+          },
+          "isConditional": {
+            "type": "boolean",
+            "nullable": true
           },
           "levels": {
             "type": "integer",
@@ -17526,7 +17607,9 @@
                         "is_object_type_model",
                         "is_object_type_table",
                         "is_object_type_view",
-                        "is_object_type_column"
+                        "is_object_type_column",
+                        "is_object_type_domain",
+                        "is_object_type_domain_area"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -18073,6 +18156,7 @@
                         "include_in_ai_summary",
                         "disable_excel_template_export",
                         "is_core_diagram_attribute_knowledge_weight",
+                        "is_primary_definition",
                         "is_attribute_type_space_short_description",
                         "is_attribute_type_codelist_table",
                         "is_attribute_type_stereotype",
@@ -18092,7 +18176,12 @@
                         "is_ai_generated_summary",
                         "is_ai_generated_summary_toggle_value",
                         "is_attribute_type_diagram_recalculation_flag",
-                        "is_attribute_type_recommended"
+                        "is_attribute_type_recommended",
+                        "is_domain_definition",
+                        "is_core_diagram_data_type_icon",
+                        "is_attribute_type_concept_approval_decision_note",
+                        "is_attribute_type_concept_name",
+                        "is_domain_alternative_names"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -18238,7 +18327,9 @@
                         "is_object_type_model",
                         "is_object_type_table",
                         "is_object_type_view",
-                        "is_object_type_column"
+                        "is_object_type_column",
+                        "is_object_type_domain",
+                        "is_object_type_domain_area"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -18431,7 +18522,9 @@
                         "is_object_type_model",
                         "is_object_type_table",
                         "is_object_type_view",
-                        "is_object_type_column"
+                        "is_object_type_column",
+                        "is_object_type_domain",
+                        "is_object_type_domain_area"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -18514,6 +18607,8 @@
                         "is_object_type_table",
                         "is_object_type_view",
                         "is_object_type_column",
+                        "is_object_type_domain",
+                        "is_object_type_domain_area",
                         "facet_sort_order"
                       ],
                       "type": "string",
@@ -19127,9 +19222,20 @@
           },
           "enumKeyType": {
             "enum": [
+              "application",
+              "objectType",
+              "space",
               "attribute",
               "relation",
-              "userRelation"
+              "userRelation",
+              "codelist",
+              "modelChanges",
+              "script",
+              "mr_data",
+              "workflowState",
+              "creator",
+              "addRelation",
+              "domainTypes"
             ],
             "type": "string"
           },
@@ -19211,7 +19317,8 @@
       "PkgPatchSearchTemplateFacetedDeleteVM": {
         "required": [
           "action",
-          "enumKey"
+          "enumKey",
+          "enumKeyType"
         ],
         "type": "object",
         "properties": {
@@ -19225,6 +19332,26 @@
           },
           "enumKey": {
             "minLength": 1,
+            "type": "string"
+          },
+          "enumKeyType": {
+            "minLength": 1,
+            "enum": [
+              "application",
+              "objectType",
+              "space",
+              "attribute",
+              "relation",
+              "userRelation",
+              "codelist",
+              "modelChanges",
+              "script",
+              "mr_data",
+              "workflowState",
+              "creator",
+              "addRelation",
+              "domainTypes"
+            ],
             "type": "string"
           }
         },
@@ -19264,9 +19391,20 @@
           "enumKeyType": {
             "minLength": 1,
             "enum": [
+              "application",
+              "objectType",
+              "space",
               "attribute",
               "relation",
-              "userRelation"
+              "userRelation",
+              "codelist",
+              "modelChanges",
+              "script",
+              "mr_data",
+              "workflowState",
+              "creator",
+              "addRelation",
+              "domainTypes"
             ],
             "type": "string"
           },
@@ -19347,12 +19485,33 @@
       },
       "PkgPatchSearchTemplateFacetedReferenceVM": {
         "required": [
-          "enumKey"
+          "enumKey",
+          "enumKeyType"
         ],
         "type": "object",
         "properties": {
           "enumKey": {
             "minLength": 1,
+            "type": "string"
+          },
+          "enumKeyType": {
+            "minLength": 1,
+            "enum": [
+              "application",
+              "objectType",
+              "space",
+              "attribute",
+              "relation",
+              "userRelation",
+              "codelist",
+              "modelChanges",
+              "script",
+              "mr_data",
+              "workflowState",
+              "creator",
+              "addRelation",
+              "domainTypes"
+            ],
             "type": "string"
           },
           "parameters": {
@@ -19416,9 +19575,20 @@
           },
           "enumKeyType": {
             "enum": [
+              "application",
+              "objectType",
+              "space",
               "attribute",
               "relation",
-              "userRelation"
+              "userRelation",
+              "codelist",
+              "modelChanges",
+              "script",
+              "mr_data",
+              "workflowState",
+              "creator",
+              "addRelation",
+              "domainTypes"
             ],
             "type": "string",
             "nullable": true
@@ -19484,9 +19654,20 @@
           "enumKeyType": {
             "minLength": 1,
             "enum": [
+              "application",
+              "objectType",
+              "space",
               "attribute",
               "relation",
-              "userRelation"
+              "userRelation",
+              "codelist",
+              "modelChanges",
+              "script",
+              "mr_data",
+              "workflowState",
+              "creator",
+              "addRelation",
+              "domainTypes"
             ],
             "type": "string"
           },
@@ -20268,6 +20449,7 @@
                         "include_in_ai_summary",
                         "disable_excel_template_export",
                         "is_core_diagram_attribute_knowledge_weight",
+                        "is_primary_definition",
                         "is_attribute_type_space_short_description",
                         "is_attribute_type_codelist_table",
                         "is_attribute_type_stereotype",
@@ -20287,7 +20469,12 @@
                         "is_ai_generated_summary",
                         "is_ai_generated_summary_toggle_value",
                         "is_attribute_type_diagram_recalculation_flag",
-                        "is_attribute_type_recommended"
+                        "is_attribute_type_recommended",
+                        "is_domain_definition",
+                        "is_core_diagram_data_type_icon",
+                        "is_attribute_type_concept_approval_decision_note",
+                        "is_attribute_type_concept_name",
+                        "is_domain_alternative_names"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -20467,6 +20654,7 @@
                         "include_in_ai_summary",
                         "disable_excel_template_export",
                         "is_core_diagram_attribute_knowledge_weight",
+                        "is_primary_definition",
                         "is_attribute_type_space_short_description",
                         "is_attribute_type_codelist_table",
                         "is_attribute_type_stereotype",
@@ -20486,7 +20674,12 @@
                         "is_ai_generated_summary",
                         "is_ai_generated_summary_toggle_value",
                         "is_attribute_type_diagram_recalculation_flag",
-                        "is_attribute_type_recommended"
+                        "is_attribute_type_recommended",
+                        "is_domain_definition",
+                        "is_core_diagram_data_type_icon",
+                        "is_attribute_type_concept_approval_decision_note",
+                        "is_attribute_type_concept_name",
+                        "is_domain_alternative_names"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -20643,6 +20836,7 @@
                         "include_in_ai_summary",
                         "disable_excel_template_export",
                         "is_core_diagram_attribute_knowledge_weight",
+                        "is_primary_definition",
                         "is_attribute_type_space_short_description",
                         "is_attribute_type_codelist_table",
                         "is_attribute_type_stereotype",
@@ -20662,7 +20856,12 @@
                         "is_ai_generated_summary",
                         "is_ai_generated_summary_toggle_value",
                         "is_attribute_type_diagram_recalculation_flag",
-                        "is_attribute_type_recommended"
+                        "is_attribute_type_recommended",
+                        "is_domain_definition",
+                        "is_core_diagram_data_type_icon",
+                        "is_attribute_type_concept_approval_decision_note",
+                        "is_attribute_type_concept_name",
+                        "is_domain_alternative_names"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -20795,6 +20994,7 @@
                         "include_in_ai_summary",
                         "disable_excel_template_export",
                         "is_core_diagram_attribute_knowledge_weight",
+                        "is_primary_definition",
                         "is_attribute_type_space_short_description",
                         "is_attribute_type_codelist_table",
                         "is_attribute_type_stereotype",
@@ -20815,6 +21015,11 @@
                         "is_ai_generated_summary_toggle_value",
                         "is_attribute_type_diagram_recalculation_flag",
                         "is_attribute_type_recommended",
+                        "is_domain_definition",
+                        "is_core_diagram_data_type_icon",
+                        "is_attribute_type_concept_approval_decision_note",
+                        "is_attribute_type_concept_name",
+                        "is_domain_alternative_names",
                         "fullness_score_value"
                       ],
                       "type": "string",
@@ -21092,7 +21297,14 @@
               "marketplace_package_version_install_progress",
               "marketplace_package_delete_progress",
               "bulk_edit_info",
-              "master_hash_update"
+              "master_hash_update",
+              "bulk_domains_info",
+              "send_concept_to_approval",
+              "send_anonymous_concept_to_approval",
+              "concept_approved",
+              "anonymous_concept_approved",
+              "concept_declined",
+              "anonymous_concept_declined"
             ],
             "type": "string",
             "nullable": true
@@ -21273,7 +21485,14 @@
               "marketplace_package_version_install_progress",
               "marketplace_package_delete_progress",
               "bulk_edit_info",
-              "master_hash_update"
+              "master_hash_update",
+              "bulk_domains_info",
+              "send_concept_to_approval",
+              "send_anonymous_concept_to_approval",
+              "concept_approved",
+              "anonymous_concept_approved",
+              "concept_declined",
+              "anonymous_concept_declined"
             ],
             "type": "string"
           },
@@ -22172,16 +22391,11 @@
       },
       "PkgGraphDefaultLabels": {
         "required": [
-          "sortOrder",
           "type",
           "value"
         ],
         "type": "object",
         "properties": {
-          "sortOrder": {
-            "type": "integer",
-            "format": "int32"
-          },
           "type": {
             "minLength": 1,
             "enum": [
@@ -22823,6 +23037,7 @@
             "type": "string"
           },
           "uuid": {
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
             "type": "string",
             "format": "uuid"
           }
@@ -24963,6 +25178,7 @@
                         "include_in_ai_summary",
                         "disable_excel_template_export",
                         "is_core_diagram_attribute_knowledge_weight",
+                        "is_primary_definition",
                         "is_attribute_type_space_short_description",
                         "is_attribute_type_codelist_table",
                         "is_attribute_type_stereotype",
@@ -24982,7 +25198,12 @@
                         "is_ai_generated_summary",
                         "is_ai_generated_summary_toggle_value",
                         "is_attribute_type_diagram_recalculation_flag",
-                        "is_attribute_type_recommended"
+                        "is_attribute_type_recommended",
+                        "is_domain_definition",
+                        "is_core_diagram_data_type_icon",
+                        "is_attribute_type_concept_approval_decision_note",
+                        "is_attribute_type_concept_name",
+                        "is_domain_alternative_names"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -25221,6 +25442,7 @@
                         "include_in_ai_summary",
                         "disable_excel_template_export",
                         "is_core_diagram_attribute_knowledge_weight",
+                        "is_primary_definition",
                         "is_attribute_type_space_short_description",
                         "is_attribute_type_codelist_table",
                         "is_attribute_type_stereotype",
@@ -25240,7 +25462,12 @@
                         "is_ai_generated_summary",
                         "is_ai_generated_summary_toggle_value",
                         "is_attribute_type_diagram_recalculation_flag",
-                        "is_attribute_type_recommended"
+                        "is_attribute_type_recommended",
+                        "is_domain_definition",
+                        "is_core_diagram_data_type_icon",
+                        "is_attribute_type_concept_approval_decision_note",
+                        "is_attribute_type_concept_name",
+                        "is_domain_alternative_names"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -25414,6 +25641,7 @@
                         "include_in_ai_summary",
                         "disable_excel_template_export",
                         "is_core_diagram_attribute_knowledge_weight",
+                        "is_primary_definition",
                         "is_attribute_type_space_short_description",
                         "is_attribute_type_codelist_table",
                         "is_attribute_type_stereotype",
@@ -25433,7 +25661,12 @@
                         "is_ai_generated_summary",
                         "is_ai_generated_summary_toggle_value",
                         "is_attribute_type_diagram_recalculation_flag",
-                        "is_attribute_type_recommended"
+                        "is_attribute_type_recommended",
+                        "is_domain_definition",
+                        "is_core_diagram_data_type_icon",
+                        "is_attribute_type_concept_approval_decision_note",
+                        "is_attribute_type_concept_name",
+                        "is_domain_alternative_names"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -25566,6 +25799,7 @@
                         "include_in_ai_summary",
                         "disable_excel_template_export",
                         "is_core_diagram_attribute_knowledge_weight",
+                        "is_primary_definition",
                         "is_attribute_type_space_short_description",
                         "is_attribute_type_codelist_table",
                         "is_attribute_type_stereotype",
@@ -25586,6 +25820,11 @@
                         "is_ai_generated_summary_toggle_value",
                         "is_attribute_type_diagram_recalculation_flag",
                         "is_attribute_type_recommended",
+                        "is_domain_definition",
+                        "is_core_diagram_data_type_icon",
+                        "is_attribute_type_concept_approval_decision_note",
+                        "is_attribute_type_concept_name",
+                        "is_domain_alternative_names",
                         "fullness_score_value"
                       ],
                       "type": "string",
@@ -25803,6 +26042,7 @@
                         "exact_match_spaces",
                         "disable_duplicate_validation_for_spaceapp",
                         "force_confirmation_after_object_move",
+                        "copy_paste_as_plaintext_like",
                         "object_workflow_space_admin_as_regular_user",
                         "move_object_based_on_role"
                       ],
@@ -26123,6 +26363,7 @@
                         "exact_match_spaces",
                         "disable_duplicate_validation_for_spaceapp",
                         "force_confirmation_after_object_move",
+                        "copy_paste_as_plaintext_like",
                         "object_workflow_space_admin_as_regular_user",
                         "move_object_based_on_role"
                       ],
@@ -26515,6 +26756,7 @@
                         "exact_match_spaces",
                         "disable_duplicate_validation_for_spaceapp",
                         "force_confirmation_after_object_move",
+                        "copy_paste_as_plaintext_like",
                         "object_workflow_space_admin_as_regular_user",
                         "move_object_based_on_role"
                       ],
@@ -26786,6 +27028,7 @@
                         "exact_match_spaces",
                         "disable_duplicate_validation_for_spaceapp",
                         "force_confirmation_after_object_move",
+                        "copy_paste_as_plaintext_like",
                         "object_workflow_space_admin_as_regular_user",
                         "move_object_based_on_role"
                       ],
@@ -27026,6 +27269,7 @@
                         "exact_match_spaces",
                         "disable_duplicate_validation_for_spaceapp",
                         "force_confirmation_after_object_move",
+                        "copy_paste_as_plaintext_like",
                         "object_workflow_space_admin_as_regular_user",
                         "move_object_based_on_role",
                         "order_number",
@@ -28638,6 +28882,7 @@
                       "disable_duplicate_validation_for_spaceapp",
                       "move_object_based_on_role",
                       "force_confirmation_after_object_move",
+                      "copy_paste_as_plaintext_like",
                       "is_application_data_dictionary",
                       "is_application_code_tables",
                       "is_application_dawiso_objects",
@@ -29009,7 +29254,8 @@
                         "is_relation_space_of",
                         "is_relation_in_space",
                         "is_not_presented_in_changes",
-                        "can_be_shown_in_diagram"
+                        "can_be_shown_in_diagram",
+                        "is_domain_of"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -29137,7 +29383,8 @@
                       "is_relation_space_of",
                       "is_relation_in_space",
                       "is_not_presented_in_changes",
-                      "can_be_shown_in_diagram"
+                      "can_be_shown_in_diagram",
+                      "is_domain_of"
                     ],
                     "type": "string",
                     "readOnly": true
@@ -29581,7 +29828,9 @@
                         "is_object_type_model",
                         "is_object_type_table",
                         "is_object_type_view",
-                        "is_object_type_column"
+                        "is_object_type_column",
+                        "is_object_type_domain",
+                        "is_object_type_domain_area"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -29896,7 +30145,14 @@
               "marketplace_package_version_install_progress",
               "marketplace_package_delete_progress",
               "bulk_edit_info",
-              "master_hash_update"
+              "master_hash_update",
+              "bulk_domains_info",
+              "send_concept_to_approval",
+              "send_anonymous_concept_to_approval",
+              "concept_approved",
+              "anonymous_concept_approved",
+              "concept_declined",
+              "anonymous_concept_declined"
             ],
             "type": "string"
           },
@@ -30202,6 +30458,7 @@
             "type": "string"
           },
           "uuid": {
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
             "type": "string",
             "format": "uuid"
           }
@@ -30705,6 +30962,7 @@
                         "include_in_ai_summary",
                         "disable_excel_template_export",
                         "is_core_diagram_attribute_knowledge_weight",
+                        "is_primary_definition",
                         "is_attribute_type_space_short_description",
                         "is_attribute_type_codelist_table",
                         "is_attribute_type_stereotype",
@@ -30724,7 +30982,12 @@
                         "is_ai_generated_summary",
                         "is_ai_generated_summary_toggle_value",
                         "is_attribute_type_diagram_recalculation_flag",
-                        "is_attribute_type_recommended"
+                        "is_attribute_type_recommended",
+                        "is_domain_definition",
+                        "is_core_diagram_data_type_icon",
+                        "is_attribute_type_concept_approval_decision_note",
+                        "is_attribute_type_concept_name",
+                        "is_domain_alternative_names"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -30947,6 +31210,7 @@
                         "exact_match_spaces",
                         "disable_duplicate_validation_for_spaceapp",
                         "force_confirmation_after_object_move",
+                        "copy_paste_as_plaintext_like",
                         "object_workflow_space_admin_as_regular_user",
                         "move_object_based_on_role"
                       ],
