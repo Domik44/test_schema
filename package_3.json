@@ -7631,6 +7631,7 @@
       },
       "TimeSelectorDatabaseTemplate": {
         "required": [
+          "targetDataComponentIds",
           "type"
         ],
         "type": "object",
@@ -7643,8 +7644,7 @@
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "nullable": true
+            }
           },
           "type": {
             "enum": [
@@ -26315,6 +26315,9 @@
                   "$ref": "#/components/schemas/SplitterDatabaseTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/PanelDatabaseTemplate"
                 },
                 {
@@ -26354,6 +26357,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/SplitterDatabaseTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/PanelDatabaseTemplate"
