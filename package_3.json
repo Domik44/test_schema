@@ -10339,10 +10339,10 @@
             "nullable": true
           },
           "data": {
-            "$ref": "#/components/schemas/ApiChartDataDatabaseTemplate"
+            "$ref": "#/components/schemas/ApiChartDataTemplate"
           },
           "definition": {
-            "$ref": "#/components/schemas/ApiChartDefinitionDatabaseTemplate"
+            "$ref": "#/components/schemas/ApiChartDefinitionTemplate"
           },
           "subTitle": {
             "type": "string",
@@ -10362,36 +10362,50 @@
         },
         "additionalProperties": false
       },
-      "ApiChartDefinitionDatabaseTemplate": {
+      "ApiChartDefinitionTemplate": {
         "type": "object",
         "properties": {
           "options": {
             "nullable": true
           },
           "type": {
+            "enum": [
+              "bar",
+              "line",
+              "polar_area",
+              "radar",
+              "pie_doughnut",
+              "mixed"
+            ],
             "type": "string",
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "ApiChartDataDatabaseTemplate": {
+      "ApiChartDataTemplate": {
         "type": "object",
         "properties": {
           "datasets": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ApiChartDatasetDatabaseTemplate"
+              "$ref": "#/components/schemas/ApiChartDatasetTemplate"
             }
           }
         },
         "additionalProperties": false
       },
-      "ApiChartDatasetDatabaseTemplate": {
+      "ApiChartDatasetTemplate": {
+        "required": [
+          "dataApi"
+        ],
         "type": "object",
         "properties": {
           "dataApi": {
-            "type": "string",
+            "minLength": 1,
+            "type": "string"
+          },
+          "options": {
             "nullable": true
           }
         },
@@ -11895,10 +11909,10 @@
             "nullable": true
           },
           "data": {
-            "$ref": "#/components/schemas/ApiChartDataDatabaseTemplate"
+            "$ref": "#/components/schemas/ApiChartDataTemplate"
           },
           "definition": {
-            "$ref": "#/components/schemas/ApiChartDefinitionDatabaseTemplate"
+            "$ref": "#/components/schemas/ApiChartDefinitionTemplate"
           },
           "subTitle": {
             "type": "string",
@@ -11957,10 +11971,10 @@
             "nullable": true
           },
           "data": {
-            "$ref": "#/components/schemas/ApiChartDataDatabaseTemplate"
+            "$ref": "#/components/schemas/ApiChartDataTemplate"
           },
           "definition": {
-            "$ref": "#/components/schemas/ApiChartDefinitionDatabaseTemplate"
+            "$ref": "#/components/schemas/ApiChartDefinitionTemplate"
           },
           "subTitle": {
             "type": "string",
