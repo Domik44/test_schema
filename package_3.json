@@ -6976,6 +6976,9 @@
                   "$ref": "#/components/schemas/ApiCardInlineDatabaseTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/ApiChartDatabaseTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/ApiTableDatabaseTemplate"
                 },
                 {
@@ -7079,9 +7082,6 @@
                 },
                 {
                   "$ref": "#/components/schemas/TabsDatabaseTemplate"
-                },
-                {
-                  "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/WordCloudDatabaseTemplate"
@@ -7104,6 +7104,9 @@
                   "$ref": "#/components/schemas/ApiCardInlineDatabaseTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/ApiChartDatabaseTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/ApiTableDatabaseTemplate"
                 },
                 {
@@ -7207,9 +7210,6 @@
                 },
                 {
                   "$ref": "#/components/schemas/TabsDatabaseTemplate"
-                },
-                {
-                  "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/WordCloudDatabaseTemplate"
@@ -7433,6 +7433,9 @@
                   "$ref": "#/components/schemas/ApiCardInlineDatabaseTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/ApiChartDatabaseTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/ApiTableDatabaseTemplate"
                 },
                 {
@@ -7536,9 +7539,6 @@
                 },
                 {
                   "$ref": "#/components/schemas/TabsDatabaseTemplate"
-                },
-                {
-                  "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/WordCloudDatabaseTemplate"
@@ -7629,33 +7629,6 @@
         },
         "additionalProperties": false
       },
-      "TimeSelectorDatabaseTemplate": {
-        "required": [
-          "targetDataComponentIds",
-          "type"
-        ],
-        "type": "object",
-        "properties": {
-          "componentId": {
-            "type": "string",
-            "nullable": true
-          },
-          "targetDataComponentIds": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "type": {
-            "enum": [
-              "time-selector"
-            ],
-            "type": "string",
-            "readOnly": true
-          }
-        },
-        "additionalProperties": false
-      },
       "TabsDatabaseTemplate": {
         "required": [
           "type"
@@ -7705,6 +7678,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/ApiCardInlineDatabaseTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/ApiChartDatabaseTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/ApiTableDatabaseTemplate"
@@ -7810,9 +7786,6 @@
                 },
                 {
                   "$ref": "#/components/schemas/TabsDatabaseTemplate"
-                },
-                {
-                  "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/WordCloudDatabaseTemplate"
@@ -8378,6 +8351,9 @@
                   "$ref": "#/components/schemas/ApiCardInlineDatabaseTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/ApiChartDatabaseTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/ApiTableDatabaseTemplate"
                 },
                 {
@@ -8481,9 +8457,6 @@
                 },
                 {
                   "$ref": "#/components/schemas/TabsDatabaseTemplate"
-                },
-                {
-                  "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/WordCloudDatabaseTemplate"
@@ -9483,6 +9456,9 @@
                   "$ref": "#/components/schemas/ApiCardInlineDatabaseTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/ApiChartDatabaseTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/ApiTableDatabaseTemplate"
                 },
                 {
@@ -9586,9 +9562,6 @@
                 },
                 {
                   "$ref": "#/components/schemas/TabsDatabaseTemplate"
-                },
-                {
-                  "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/WordCloudDatabaseTemplate"
@@ -10352,6 +10325,78 @@
         },
         "additionalProperties": false
       },
+      "ApiChartDatabaseTemplate": {
+        "required": [
+          "data",
+          "definition",
+          "title",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "componentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ApiChartDataDatabaseTemplate"
+          },
+          "definition": {
+            "$ref": "#/components/schemas/ApiChartDefinitionDatabaseTemplate"
+          },
+          "subTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "api-chart"
+            ],
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApiChartDefinitionDatabaseTemplate": {
+        "type": "object",
+        "properties": {
+          "options": {
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApiChartDataDatabaseTemplate": {
+        "type": "object",
+        "properties": {
+          "datasets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiChartDatasetDatabaseTemplate"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApiChartDatasetDatabaseTemplate": {
+        "type": "object",
+        "properties": {
+          "dataApi": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ApiCardInlineDatabaseTemplate": {
         "required": [
           "api",
@@ -11096,6 +11141,12 @@
                   "$ref": "#/components/schemas/ApiCardInlineDatabasePatchUpdateTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/ApiChartDatabasePatchAddTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/ApiChartDatabasePatchUpdateTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/SearchDatabasePatchAddTemplate"
                 },
                 {
@@ -11360,6 +11411,12 @@
                 },
                 {
                   "$ref": "#/components/schemas/ApiCardInlineDatabasePatchUpdateTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/ApiChartDatabasePatchAddTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/ApiChartDatabasePatchUpdateTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/SearchDatabasePatchAddTemplate"
@@ -11808,6 +11865,114 @@
           "type": {
             "enum": [
               "search"
+            ],
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApiChartDatabasePatchUpdateTemplate": {
+        "required": [
+          "action",
+          "data",
+          "definition",
+          "title",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "action": {
+            "minLength": 1,
+            "enum": [
+              "update"
+            ],
+            "type": "string",
+            "readOnly": true
+          },
+          "componentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ApiChartDataDatabaseTemplate"
+          },
+          "definition": {
+            "$ref": "#/components/schemas/ApiChartDefinitionDatabaseTemplate"
+          },
+          "subTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "api-chart"
+            ],
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApiChartDatabasePatchAddTemplate": {
+        "required": [
+          "action",
+          "data",
+          "definition",
+          "title",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "action": {
+            "minLength": 1,
+            "enum": [
+              "add"
+            ],
+            "type": "string",
+            "readOnly": true
+          },
+          "addAfterComponentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "addBeforeComponentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "addToEnd": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "addToStart": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "componentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ApiChartDataDatabaseTemplate"
+          },
+          "definition": {
+            "$ref": "#/components/schemas/ApiChartDefinitionDatabaseTemplate"
+          },
+          "subTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "api-chart"
             ],
             "type": "string",
             "readOnly": true
@@ -14418,6 +14583,9 @@
                   "$ref": "#/components/schemas/ApiCardInlineDatabaseTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/ApiChartDatabaseTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/ApiTableDatabaseTemplate"
                 },
                 {
@@ -14521,9 +14689,6 @@
                 },
                 {
                   "$ref": "#/components/schemas/TabsDatabaseTemplate"
-                },
-                {
-                  "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/WordCloudDatabaseTemplate"
@@ -14605,6 +14770,9 @@
                   "$ref": "#/components/schemas/ApiCardInlineDatabaseTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/ApiChartDatabaseTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/ApiTableDatabaseTemplate"
                 },
                 {
@@ -14708,9 +14876,6 @@
                 },
                 {
                   "$ref": "#/components/schemas/TabsDatabaseTemplate"
-                },
-                {
-                  "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/WordCloudDatabaseTemplate"
@@ -14991,6 +15156,12 @@
                 },
                 {
                   "$ref": "#/components/schemas/ApiCardInlineDatabasePatchUpdateTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/ApiChartDatabasePatchAddTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/ApiChartDatabasePatchUpdateTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/SearchDatabasePatchAddTemplate"
@@ -16369,6 +16540,12 @@
                   "$ref": "#/components/schemas/ApiCardInlineDatabasePatchUpdateTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/ApiChartDatabasePatchAddTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/ApiChartDatabasePatchUpdateTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/SearchDatabasePatchAddTemplate"
                 },
                 {
@@ -16992,6 +17169,9 @@
                   "$ref": "#/components/schemas/ApiCardInlineDatabaseTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/ApiChartDatabaseTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/ApiTableDatabaseTemplate"
                 },
                 {
@@ -17095,9 +17275,6 @@
                 },
                 {
                   "$ref": "#/components/schemas/TabsDatabaseTemplate"
-                },
-                {
-                  "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/WordCloudDatabaseTemplate"
@@ -17165,6 +17342,9 @@
                   "$ref": "#/components/schemas/ApiCardInlineDatabaseTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/ApiChartDatabaseTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/ApiTableDatabaseTemplate"
                 },
                 {
@@ -17268,9 +17448,6 @@
                 },
                 {
                   "$ref": "#/components/schemas/TabsDatabaseTemplate"
-                },
-                {
-                  "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/WordCloudDatabaseTemplate"
@@ -17551,6 +17728,12 @@
                 },
                 {
                   "$ref": "#/components/schemas/ApiCardInlineDatabasePatchUpdateTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/ApiChartDatabasePatchAddTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/ApiChartDatabasePatchUpdateTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/SearchDatabasePatchAddTemplate"
@@ -19998,6 +20181,12 @@
                   "$ref": "#/components/schemas/ApiCardInlineDatabasePatchUpdateTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/ApiChartDatabasePatchAddTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/ApiChartDatabasePatchUpdateTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/SearchDatabasePatchAddTemplate"
                 },
                 {
@@ -20260,6 +20449,12 @@
               },
               {
                 "$ref": "#/components/schemas/ApiCardInlineDatabasePatchUpdateTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/ApiChartDatabasePatchAddTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/ApiChartDatabasePatchUpdateTemplate"
               },
               {
                 "$ref": "#/components/schemas/SearchDatabasePatchAddTemplate"
@@ -24182,6 +24377,9 @@
                 "$ref": "#/components/schemas/ApiCardInlineDatabaseTemplate"
               },
               {
+                "$ref": "#/components/schemas/ApiChartDatabaseTemplate"
+              },
+              {
                 "$ref": "#/components/schemas/ApiTableDatabaseTemplate"
               },
               {
@@ -24285,9 +24483,6 @@
               },
               {
                 "$ref": "#/components/schemas/TabsDatabaseTemplate"
-              },
-              {
-                "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
               },
               {
                 "$ref": "#/components/schemas/WordCloudDatabaseTemplate"
@@ -24352,6 +24547,9 @@
                 "$ref": "#/components/schemas/ApiCardInlineDatabaseTemplate"
               },
               {
+                "$ref": "#/components/schemas/ApiChartDatabaseTemplate"
+              },
+              {
                 "$ref": "#/components/schemas/ApiTableDatabaseTemplate"
               },
               {
@@ -24455,9 +24653,6 @@
               },
               {
                 "$ref": "#/components/schemas/TabsDatabaseTemplate"
-              },
-              {
-                "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
               },
               {
                 "$ref": "#/components/schemas/WordCloudDatabaseTemplate"
@@ -26306,6 +26501,9 @@
                   "$ref": "#/components/schemas/ApiCardInlineDatabaseTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/ApiChartDatabaseTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/ChartDatabaseTemplate"
                 },
                 {
@@ -26313,9 +26511,6 @@
                 },
                 {
                   "$ref": "#/components/schemas/SplitterDatabaseTemplate"
-                },
-                {
-                  "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/PanelDatabaseTemplate"
@@ -26350,6 +26545,9 @@
                   "$ref": "#/components/schemas/ApiCardInlineDatabaseTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/ApiChartDatabaseTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/ChartDatabaseTemplate"
                 },
                 {
@@ -26357,9 +26555,6 @@
                 },
                 {
                   "$ref": "#/components/schemas/SplitterDatabaseTemplate"
-                },
-                {
-                  "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/PanelDatabaseTemplate"
@@ -27638,6 +27833,12 @@
                   "$ref": "#/components/schemas/ApiCardInlineDatabasePatchUpdateTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/ApiChartDatabasePatchAddTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/ApiChartDatabasePatchUpdateTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/SearchDatabasePatchAddTemplate"
                 },
                 {
@@ -27902,6 +28103,12 @@
                 },
                 {
                   "$ref": "#/components/schemas/ApiCardInlineDatabasePatchUpdateTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/ApiChartDatabasePatchAddTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/ApiChartDatabasePatchUpdateTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/SearchDatabasePatchAddTemplate"
@@ -30693,6 +30900,9 @@
                 "$ref": "#/components/schemas/ApiCardInlineDatabaseTemplate"
               },
               {
+                "$ref": "#/components/schemas/ApiChartDatabaseTemplate"
+              },
+              {
                 "$ref": "#/components/schemas/ApiTableDatabaseTemplate"
               },
               {
@@ -30796,9 +31006,6 @@
               },
               {
                 "$ref": "#/components/schemas/TabsDatabaseTemplate"
-              },
-              {
-                "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
               },
               {
                 "$ref": "#/components/schemas/WordCloudDatabaseTemplate"
