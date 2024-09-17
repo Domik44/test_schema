@@ -10341,9 +10341,7 @@
           "data": {
             "$ref": "#/components/schemas/ApiChartDataTemplate"
           },
-          "definition": {
-            "$ref": "#/components/schemas/ApiChartDefinitionTemplate"
-          },
+          "definition": {},
           "subTitle": {
             "type": "string",
             "nullable": true
@@ -10358,27 +10356,6 @@
             ],
             "type": "string",
             "readOnly": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ApiChartDefinitionTemplate": {
-        "type": "object",
-        "properties": {
-          "options": {
-            "nullable": true
-          },
-          "type": {
-            "enum": [
-              "bar",
-              "line",
-              "polar_area",
-              "radar",
-              "pie_doughnut",
-              "mixed"
-            ],
-            "type": "string",
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -11911,9 +11888,7 @@
           "data": {
             "$ref": "#/components/schemas/ApiChartDataTemplate"
           },
-          "definition": {
-            "$ref": "#/components/schemas/ApiChartDefinitionTemplate"
-          },
+          "definition": {},
           "subTitle": {
             "type": "string",
             "nullable": true
@@ -11973,9 +11948,7 @@
           "data": {
             "$ref": "#/components/schemas/ApiChartDataTemplate"
           },
-          "definition": {
-            "$ref": "#/components/schemas/ApiChartDefinitionTemplate"
-          },
+          "definition": {},
           "subTitle": {
             "type": "string",
             "nullable": true
