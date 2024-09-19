@@ -2228,6 +2228,7 @@
                         "disable_excel_template_export",
                         "is_allowed_to_move_in_move_object_based_on_role",
                         "can_be_shown_in_diagram",
+                        "on_object_creation_is_creator_auto_assigned",
                         "is_user_object_relation_type_favourite",
                         "is_user_object_relation_type_watch",
                         "is_user_object_relation_type_shared_with_me",
@@ -2406,6 +2407,7 @@
                         "disable_excel_template_export",
                         "is_allowed_to_move_in_move_object_based_on_role",
                         "can_be_shown_in_diagram",
+                        "on_object_creation_is_creator_auto_assigned",
                         "is_user_object_relation_type_favourite",
                         "is_user_object_relation_type_watch",
                         "is_user_object_relation_type_shared_with_me",
@@ -2519,6 +2521,7 @@
                         "disable_excel_template_export",
                         "is_allowed_to_move_in_move_object_based_on_role",
                         "can_be_shown_in_diagram",
+                        "on_object_creation_is_creator_auto_assigned",
                         "is_user_object_relation_type_favourite",
                         "is_user_object_relation_type_watch",
                         "is_user_object_relation_type_shared_with_me",
@@ -2602,6 +2605,7 @@
                         "disable_excel_template_export",
                         "is_allowed_to_move_in_move_object_based_on_role",
                         "can_be_shown_in_diagram",
+                        "on_object_creation_is_creator_auto_assigned",
                         "is_user_object_relation_type_favourite",
                         "is_user_object_relation_type_watch",
                         "is_user_object_relation_type_shared_with_me",
@@ -7084,6 +7088,9 @@
                   "$ref": "#/components/schemas/TabsDatabaseTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/WordCloudDatabaseTemplate"
                 },
                 {
@@ -7210,6 +7217,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/TabsDatabaseTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/WordCloudDatabaseTemplate"
@@ -7541,6 +7551,9 @@
                   "$ref": "#/components/schemas/TabsDatabaseTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/WordCloudDatabaseTemplate"
                 },
                 {
@@ -7625,6 +7638,33 @@
               }
             ],
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TimeSelectorDatabaseTemplate": {
+        "required": [
+          "targetDataComponentIds",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "componentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "targetDataComponentIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "type": {
+            "enum": [
+              "time-selector"
+            ],
+            "type": "string",
+            "readOnly": true
           }
         },
         "additionalProperties": false
@@ -7788,6 +7828,9 @@
                   "$ref": "#/components/schemas/TabsDatabaseTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/WordCloudDatabaseTemplate"
                 },
                 {
@@ -7925,6 +7968,10 @@
             },
             "nullable": true
           },
+          "hideActions": {
+            "type": "boolean",
+            "nullable": true
+          },
           "objectTypeKey": {
             "type": "string",
             "nullable": true
@@ -8020,6 +8067,11 @@
             "format": "int32",
             "nullable": true
           },
+          "minWidth": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
           "objectType": {
             "type": "string",
             "nullable": true
@@ -8057,6 +8109,11 @@
             "nullable": true
           },
           "maxLength": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "minWidth": {
             "type": "integer",
             "format": "int32",
             "nullable": true
@@ -8108,6 +8165,11 @@
             "format": "int32",
             "nullable": true
           },
+          "minWidth": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
           "objectType": {
             "type": "string",
             "nullable": true
@@ -8147,6 +8209,11 @@
             "nullable": true
           },
           "maxLength": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "minWidth": {
             "type": "integer",
             "format": "int32",
             "nullable": true
@@ -8216,6 +8283,11 @@
             "nullable": true
           },
           "maxLength": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "minWidth": {
             "type": "integer",
             "format": "int32",
             "nullable": true
@@ -8457,6 +8529,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/TabsDatabaseTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/WordCloudDatabaseTemplate"
@@ -9562,6 +9637,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/TabsDatabaseTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/WordCloudDatabaseTemplate"
@@ -10934,6 +11012,12 @@
                   "$ref": "#/components/schemas/TabAttributesDatabasePatchUpdateTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/TimeSelectorDatabasePatchAddTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/TimeSelectorDatabasePatchUpdateTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/SplitterDatabasePatchReferenceTemplate"
                 },
                 {
@@ -11204,6 +11288,12 @@
                 },
                 {
                   "$ref": "#/components/schemas/TabAttributesDatabasePatchUpdateTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/TimeSelectorDatabasePatchAddTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/TimeSelectorDatabasePatchUpdateTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/SplitterDatabasePatchReferenceTemplate"
@@ -12532,6 +12622,10 @@
             },
             "nullable": true
           },
+          "hideActions": {
+            "type": "boolean",
+            "nullable": true
+          },
           "objectTypeKey": {
             "type": "string",
             "nullable": true
@@ -12653,6 +12747,10 @@
             },
             "nullable": true
           },
+          "hideActions": {
+            "type": "boolean",
+            "nullable": true
+          },
           "objectTypeKey": {
             "type": "string",
             "nullable": true
@@ -12756,6 +12854,10 @@
             "additionalProperties": {
               "$ref": "#/components/schemas/FilterValue"
             },
+            "nullable": true
+          },
+          "hideActions": {
+            "type": "boolean",
             "nullable": true
           },
           "objectTypeKey": {
@@ -14678,6 +14780,9 @@
                   "$ref": "#/components/schemas/TabsDatabaseTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/WordCloudDatabaseTemplate"
                 },
                 {
@@ -14865,6 +14970,9 @@
                   "$ref": "#/components/schemas/TabsDatabaseTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/WordCloudDatabaseTemplate"
                 },
                 {
@@ -14945,6 +15053,12 @@
                 },
                 {
                   "$ref": "#/components/schemas/TabAttributesDatabasePatchUpdateTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/TimeSelectorDatabasePatchAddTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/TimeSelectorDatabasePatchUpdateTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/SplitterDatabasePatchReferenceTemplate"
@@ -16329,6 +16443,12 @@
                   "$ref": "#/components/schemas/TabAttributesDatabasePatchUpdateTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/TimeSelectorDatabasePatchAddTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/TimeSelectorDatabasePatchUpdateTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/SplitterDatabasePatchReferenceTemplate"
                 },
                 {
@@ -16547,6 +16667,94 @@
               ]
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TimeSelectorDatabasePatchUpdateTemplate": {
+        "required": [
+          "action",
+          "targetDataComponentIds",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "action": {
+            "minLength": 1,
+            "enum": [
+              "update"
+            ],
+            "type": "string",
+            "readOnly": true
+          },
+          "componentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "targetDataComponentIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "type": {
+            "enum": [
+              "time-selector"
+            ],
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TimeSelectorDatabasePatchAddTemplate": {
+        "required": [
+          "action",
+          "targetDataComponentIds",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "action": {
+            "minLength": 1,
+            "enum": [
+              "add"
+            ],
+            "type": "string",
+            "readOnly": true
+          },
+          "addAfterComponentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "addBeforeComponentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "addToEnd": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "addToStart": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "componentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "targetDataComponentIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "type": {
+            "enum": [
+              "time-selector"
+            ],
+            "type": "string",
+            "readOnly": true
           }
         },
         "additionalProperties": false
@@ -17264,6 +17472,9 @@
                   "$ref": "#/components/schemas/TabsDatabaseTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/WordCloudDatabaseTemplate"
                 },
                 {
@@ -17437,6 +17648,9 @@
                   "$ref": "#/components/schemas/TabsDatabaseTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/WordCloudDatabaseTemplate"
                 },
                 {
@@ -17517,6 +17731,12 @@
                 },
                 {
                   "$ref": "#/components/schemas/TabAttributesDatabasePatchUpdateTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/TimeSelectorDatabasePatchAddTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/TimeSelectorDatabasePatchUpdateTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/SplitterDatabasePatchReferenceTemplate"
@@ -17997,6 +18217,7 @@
                         "disable_excel_template_export",
                         "is_allowed_to_move_in_move_object_based_on_role",
                         "can_be_shown_in_diagram",
+                        "on_object_creation_is_creator_auto_assigned",
                         "is_user_object_relation_type_favourite",
                         "is_user_object_relation_type_watch",
                         "is_user_object_relation_type_shared_with_me",
@@ -18972,6 +19193,7 @@
                         "disable_excel_template_export",
                         "is_allowed_to_move_in_move_object_based_on_role",
                         "can_be_shown_in_diagram",
+                        "on_object_creation_is_creator_auto_assigned",
                         "is_user_object_relation_type_favourite",
                         "is_user_object_relation_type_watch",
                         "is_user_object_relation_type_shared_with_me",
@@ -19102,6 +19324,7 @@
                         "disable_excel_template_export",
                         "is_allowed_to_move_in_move_object_based_on_role",
                         "can_be_shown_in_diagram",
+                        "on_object_creation_is_creator_auto_assigned",
                         "is_user_object_relation_type_favourite",
                         "is_user_object_relation_type_watch",
                         "is_user_object_relation_type_shared_with_me",
@@ -19209,6 +19432,7 @@
                         "disable_excel_template_export",
                         "is_allowed_to_move_in_move_object_based_on_role",
                         "can_be_shown_in_diagram",
+                        "on_object_creation_is_creator_auto_assigned",
                         "is_user_object_relation_type_favourite",
                         "is_user_object_relation_type_watch",
                         "is_user_object_relation_type_shared_with_me",
@@ -19292,6 +19516,7 @@
                         "disable_excel_template_export",
                         "is_allowed_to_move_in_move_object_based_on_role",
                         "can_be_shown_in_diagram",
+                        "on_object_creation_is_creator_auto_assigned",
                         "is_user_object_relation_type_favourite",
                         "is_user_object_relation_type_watch",
                         "is_user_object_relation_type_shared_with_me",
@@ -19970,6 +20195,12 @@
                   "$ref": "#/components/schemas/TabAttributesDatabasePatchUpdateTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/TimeSelectorDatabasePatchAddTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/TimeSelectorDatabasePatchUpdateTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/SplitterDatabasePatchReferenceTemplate"
                 },
                 {
@@ -20238,6 +20469,12 @@
               },
               {
                 "$ref": "#/components/schemas/TabAttributesDatabasePatchUpdateTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/TimeSelectorDatabasePatchAddTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/TimeSelectorDatabasePatchUpdateTemplate"
               },
               {
                 "$ref": "#/components/schemas/SplitterDatabasePatchReferenceTemplate"
@@ -24472,6 +24709,9 @@
                 "$ref": "#/components/schemas/TabsDatabaseTemplate"
               },
               {
+                "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
+              },
+              {
                 "$ref": "#/components/schemas/WordCloudDatabaseTemplate"
               },
               {
@@ -24640,6 +24880,9 @@
               },
               {
                 "$ref": "#/components/schemas/TabsDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
               },
               {
                 "$ref": "#/components/schemas/WordCloudDatabaseTemplate"
@@ -26500,6 +26743,9 @@
                   "$ref": "#/components/schemas/SplitterDatabaseTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/PanelDatabaseTemplate"
                 },
                 {
@@ -26542,6 +26788,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/SplitterDatabaseTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/PanelDatabaseTemplate"
@@ -27622,6 +27871,12 @@
                   "$ref": "#/components/schemas/TabAttributesDatabasePatchUpdateTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/TimeSelectorDatabasePatchAddTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/TimeSelectorDatabasePatchUpdateTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/SplitterDatabasePatchReferenceTemplate"
                 },
                 {
@@ -27892,6 +28147,12 @@
                 },
                 {
                   "$ref": "#/components/schemas/TabAttributesDatabasePatchUpdateTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/TimeSelectorDatabasePatchAddTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/TimeSelectorDatabasePatchUpdateTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/SplitterDatabasePatchReferenceTemplate"
@@ -28979,6 +29240,7 @@
                         "disable_excel_template_export",
                         "is_allowed_to_move_in_move_object_based_on_role",
                         "can_be_shown_in_diagram",
+                        "on_object_creation_is_creator_auto_assigned",
                         "is_user_object_relation_type_favourite",
                         "is_user_object_relation_type_watch",
                         "is_user_object_relation_type_shared_with_me",
@@ -30993,6 +31255,9 @@
               },
               {
                 "$ref": "#/components/schemas/TabsDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
               },
               {
                 "$ref": "#/components/schemas/WordCloudDatabaseTemplate"
