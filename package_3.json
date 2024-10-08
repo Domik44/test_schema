@@ -1026,6 +1026,13 @@
             "type": "string",
             "readOnly": true
           },
+          "attachmentUserRelationTypeKeys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
           "childCreationConditionallyDisabled": {
             "type": "boolean",
             "nullable": true
@@ -1141,6 +1148,13 @@
             ],
             "type": "string",
             "readOnly": true
+          },
+          "attachmentUserRelationTypeKeys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
           },
           "childCreationConditionallyDisabled": {
             "type": "boolean",
@@ -2962,6 +2976,7 @@
                       "move_object_based_on_role",
                       "force_confirmation_after_object_move",
                       "copy_paste_as_plaintext_like",
+                      "word_diff_use_highlight",
                       "is_application_data_dictionary",
                       "is_application_code_tables",
                       "is_application_dawiso_objects",
@@ -3334,6 +3349,7 @@
                       "move_object_based_on_role",
                       "force_confirmation_after_object_move",
                       "copy_paste_as_plaintext_like",
+                      "word_diff_use_highlight",
                       "is_application_data_dictionary",
                       "is_application_code_tables",
                       "is_application_dawiso_objects",
@@ -7568,6 +7584,7 @@
       },
       "WordCloudDatabaseTemplate": {
         "required": [
+          "description",
           "type"
         ],
         "type": "object",
@@ -7583,6 +7600,10 @@
           "componentId": {
             "type": "string",
             "nullable": true
+          },
+          "description": {
+            "minLength": 1,
+            "type": "string"
           },
           "filter": {
             "type": "object",
@@ -9210,11 +9231,6 @@
             "nullable": true
           },
           "metamodelKey": {
-            "enum": [
-              "data_lineage",
-              "entity_relation",
-              "relation"
-            ],
             "type": "string",
             "nullable": true
           },
@@ -17218,6 +17234,7 @@
       "WordCloudDatabasePatchUpdateTemplate": {
         "required": [
           "action",
+          "description",
           "type"
         ],
         "type": "object",
@@ -17241,6 +17258,10 @@
           "componentId": {
             "type": "string",
             "nullable": true
+          },
+          "description": {
+            "minLength": 1,
+            "type": "string"
           },
           "filter": {
             "type": "object",
@@ -17266,6 +17287,7 @@
       "WordCloudDatabasePatchAddTemplate": {
         "required": [
           "action",
+          "description",
           "type"
         ],
         "type": "object",
@@ -17305,6 +17327,10 @@
           "componentId": {
             "type": "string",
             "nullable": true
+          },
+          "description": {
+            "minLength": 1,
+            "type": "string"
           },
           "filter": {
             "type": "object",
@@ -18296,6 +18322,9 @@
           "main": {
             "$ref": "#/components/schemas/MainDatabaseTemplate"
           },
+          "miscellaneous": {
+            "$ref": "#/components/schemas/MiscellaneousDatabaseTemplate"
+          },
           "objectDetail": {
             "$ref": "#/components/schemas/ObjectDetailDatabaseTemplate"
           },
@@ -18393,6 +18422,37 @@
             ],
             "type": "string",
             "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MiscellaneousDatabaseTemplate": {
+        "type": "object",
+        "properties": {
+          "$schema": {
+            "type": "string",
+            "nullable": true
+          },
+          "externalLink": {
+            "$ref": "#/components/schemas/ExternalLinkDatabaseTemplate"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExternalLinkDatabaseTemplate": {
+        "required": [
+          "linkAttributeKey",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "linkAttributeKey": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": {
+            "minLength": 1,
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -18667,6 +18727,10 @@
           },
           "hasUserAutofill": {
             "type": "boolean",
+            "nullable": true
+          },
+          "htmlTemplate": {
+            "type": "string",
             "nullable": true
           },
           "isReadOnly": {
@@ -20990,6 +21054,10 @@
             "type": "boolean",
             "nullable": true
           },
+          "htmlTemplate": {
+            "type": "string",
+            "nullable": true
+          },
           "isReadOnly": {
             "type": "boolean",
             "nullable": true
@@ -21193,6 +21261,10 @@
           },
           "hasUserAutofill": {
             "type": "boolean",
+            "nullable": true
+          },
+          "htmlTemplate": {
+            "type": "string",
             "nullable": true
           },
           "isReadOnly": {
@@ -22697,6 +22769,14 @@
             "type": "string",
             "readOnly": true
           },
+          "defaultDisableAutolayout": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "defaultDisableShowAllPaths": {
+            "type": "boolean",
+            "nullable": true
+          },
           "defaultLabels": {
             "type": "array",
             "items": {
@@ -22926,6 +23006,14 @@
             ],
             "type": "string",
             "readOnly": true
+          },
+          "defaultDisableAutolayout": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "defaultDisableShowAllPaths": {
+            "type": "boolean",
+            "nullable": true
           },
           "defaultLabels": {
             "type": "array",
@@ -25727,6 +25815,10 @@
             },
             "nullable": true
           },
+          "htmlTemplate": {
+            "type": "string",
+            "nullable": true
+          },
           "key": {
             "minLength": 1,
             "type": "string"
@@ -25989,6 +26081,10 @@
                 }
               ]
             },
+            "nullable": true
+          },
+          "htmlTemplate": {
+            "type": "string",
             "nullable": true
           },
           "key": {
@@ -26531,6 +26627,7 @@
                         "disable_duplicate_validation_for_spaceapp",
                         "force_confirmation_after_object_move",
                         "copy_paste_as_plaintext_like",
+                        "word_diff_use_highlight",
                         "object_workflow_space_admin_as_regular_user",
                         "move_object_based_on_role"
                       ],
@@ -26864,6 +26961,7 @@
                         "disable_duplicate_validation_for_spaceapp",
                         "force_confirmation_after_object_move",
                         "copy_paste_as_plaintext_like",
+                        "word_diff_use_highlight",
                         "object_workflow_space_admin_as_regular_user",
                         "move_object_based_on_role"
                       ],
@@ -27257,6 +27355,7 @@
                         "disable_duplicate_validation_for_spaceapp",
                         "force_confirmation_after_object_move",
                         "copy_paste_as_plaintext_like",
+                        "word_diff_use_highlight",
                         "object_workflow_space_admin_as_regular_user",
                         "move_object_based_on_role"
                       ],
@@ -27529,6 +27628,7 @@
                         "disable_duplicate_validation_for_spaceapp",
                         "force_confirmation_after_object_move",
                         "copy_paste_as_plaintext_like",
+                        "word_diff_use_highlight",
                         "object_workflow_space_admin_as_regular_user",
                         "move_object_based_on_role"
                       ],
@@ -27770,6 +27870,7 @@
                         "disable_duplicate_validation_for_spaceapp",
                         "force_confirmation_after_object_move",
                         "copy_paste_as_plaintext_like",
+                        "word_diff_use_highlight",
                         "object_workflow_space_admin_as_regular_user",
                         "move_object_based_on_role",
                         "order_number",
@@ -28617,7 +28718,8 @@
       },
       "PackageContentVM": {
         "required": [
-          "assets"
+          "assets",
+          "key"
         ],
         "type": "object",
         "properties": {
@@ -28643,8 +28745,8 @@
             "nullable": true
           },
           "key": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "name": {
             "type": "string",
@@ -29075,6 +29177,13 @@
         ],
         "type": "object",
         "properties": {
+          "attachmentUserRelationTypeKeys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
           "childCreationConditionallyDisabled": {
             "type": "boolean",
             "nullable": true
@@ -29408,6 +29517,7 @@
                       "move_object_based_on_role",
                       "force_confirmation_after_object_move",
                       "copy_paste_as_plaintext_like",
+                      "word_diff_use_highlight",
                       "is_application_data_dictionary",
                       "is_application_code_tables",
                       "is_application_dawiso_objects",
@@ -30869,6 +30979,14 @@
         ],
         "type": "object",
         "properties": {
+          "defaultDisableAutolayout": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "defaultDisableShowAllPaths": {
+            "type": "boolean",
+            "nullable": true
+          },
           "defaultLabels": {
             "type": "array",
             "items": {
@@ -31554,6 +31672,10 @@
             },
             "nullable": true
           },
+          "htmlTemplate": {
+            "type": "string",
+            "nullable": true
+          },
           "key": {
             "minLength": 1,
             "type": "string"
@@ -31742,6 +31864,7 @@
                         "disable_duplicate_validation_for_spaceapp",
                         "force_confirmation_after_object_move",
                         "copy_paste_as_plaintext_like",
+                        "word_diff_use_highlight",
                         "object_workflow_space_admin_as_regular_user",
                         "move_object_based_on_role"
                       ],
