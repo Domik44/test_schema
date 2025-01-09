@@ -3023,7 +3023,8 @@
                       "color",
                       "object_ladder_numbering_pattern",
                       "changed_text_color",
-                      "deleted_text_color"
+                      "deleted_text_color",
+                      "one_global_font"
                     ],
                     "type": "string",
                     "readOnly": true
@@ -3100,6 +3101,25 @@
                   "key": {
                     "minLength": 1,
                     "enum": [
+                      "numbering_options"
+                    ],
+                    "type": "string",
+                    "readOnly": true
+                  },
+                  "value": {
+                    "$ref": "#/components/schemas/ObjectNumberingOptions"
+                  }
+                }
+              },
+              {
+                "required": [
+                  "key"
+                ],
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "minLength": 1,
+                    "enum": [
                       "token_keyword_spaces",
                       "token_keyword_apps"
                     ],
@@ -3119,6 +3139,17 @@
           },
           "spacePath": {
             "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ObjectNumberingOptions": {
+        "type": "object",
+        "properties": {
+          "startFromLevel": {
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           }
         },
@@ -3396,7 +3427,8 @@
                       "color",
                       "object_ladder_numbering_pattern",
                       "changed_text_color",
-                      "deleted_text_color"
+                      "deleted_text_color",
+                      "one_global_font"
                     ],
                     "type": "string",
                     "readOnly": true
@@ -3461,6 +3493,25 @@
                   },
                   "value": {
                     "$ref": "#/components/schemas/ExternalLoadsSettingsBase"
+                  }
+                }
+              },
+              {
+                "required": [
+                  "key"
+                ],
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "minLength": 1,
+                    "enum": [
+                      "numbering_options"
+                    ],
+                    "type": "string",
+                    "readOnly": true
+                  },
+                  "value": {
+                    "$ref": "#/components/schemas/ObjectNumberingOptions"
                   }
                 }
               },
@@ -4587,6 +4638,10 @@
         ],
         "type": "object",
         "properties": {
+          "isDefault": {
+            "type": "boolean",
+            "nullable": true
+          },
           "lineDisplayTypeKey": {
             "minLength": 1,
             "enum": [
@@ -4594,7 +4649,11 @@
               "foreign_key",
               "knowledge_relation",
               "knowledge_parent",
-              "indirect_flow"
+              "indirect_flow",
+              "specialization",
+              "verbal_concept",
+              "association",
+              "standard"
             ],
             "type": "string"
           },
@@ -7092,6 +7151,9 @@
                   "$ref": "#/components/schemas/SplitterDatabaseTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/SummariesDatabaseTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/TabAttributesDatabaseTemplate"
                 },
                 {
@@ -7221,6 +7283,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/SplitterDatabaseTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/SummariesDatabaseTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/TabAttributesDatabaseTemplate"
@@ -7409,7 +7474,8 @@
       },
       "NamedComponentDatabaseTemplate": {
         "required": [
-          "type"
+          "type",
+          "value"
         ],
         "type": "object",
         "properties": {
@@ -7425,8 +7491,8 @@
             "readOnly": true
           },
           "value": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -7553,6 +7619,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/SplitterDatabaseTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/SummariesDatabaseTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/TabAttributesDatabaseTemplate"
@@ -7692,7 +7761,8 @@
       },
       "TabsDatabaseTemplate": {
         "required": [
-          "type"
+          "type",
+          "values"
         ],
         "type": "object",
         "properties": {
@@ -7714,19 +7784,23 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TabSectionDatabaseTemplate"
-            },
-            "nullable": true
+            }
           }
         },
         "additionalProperties": false
       },
       "TabSectionDatabaseTemplate": {
         "required": [
+          "title",
           "values"
         ],
         "type": "object",
         "properties": {
           "title": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "tooltipKey": {
             "type": "string",
             "nullable": true
           },
@@ -7835,6 +7909,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/SplitterDatabaseTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/SummariesDatabaseTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/TabAttributesDatabaseTemplate"
@@ -8057,6 +8134,10 @@
           "text": {
             "type": "string"
           },
+          "tooltipKey": {
+            "type": "string",
+            "nullable": true
+          },
           "type": {
             "minLength": 1,
             "enum": [
@@ -8098,6 +8179,10 @@
             "nullable": true
           },
           "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "tooltipKey": {
             "type": "string",
             "nullable": true
           },
@@ -8144,6 +8229,10 @@
             "nullable": true
           },
           "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "tooltipKey": {
             "type": "string",
             "nullable": true
           },
@@ -8199,6 +8288,10 @@
             "type": "string",
             "nullable": true
           },
+          "tooltipKey": {
+            "type": "string",
+            "nullable": true
+          },
           "type": {
             "minLength": 1,
             "enum": [
@@ -8247,6 +8340,10 @@
             "type": "string",
             "nullable": true
           },
+          "tooltipKey": {
+            "type": "string",
+            "nullable": true
+          },
           "type": {
             "enum": [
               "definedKey"
@@ -8273,7 +8370,9 @@
               "statusName",
               "updaterName",
               "viewsAlltime",
-              "viewsIn1M"
+              "viewsIn1M",
+              "comment",
+              "isMentioned"
             ],
             "type": "string"
           }
@@ -8318,6 +8417,10 @@
             "nullable": true
           },
           "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "tooltipKey": {
             "type": "string",
             "nullable": true
           },
@@ -8390,8 +8493,123 @@
         },
         "additionalProperties": false
       },
+      "SummariesDatabaseTemplate": {
+        "required": [
+          "cards",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "cards": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/SummariesApplicationCardTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/SummariesNumberCardTemplate"
+                }
+              ]
+            }
+          },
+          "componentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "enum": [
+              "summaries"
+            ],
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SummariesNumberCardTemplate": {
+        "required": [
+          "api",
+          "iconKey",
+          "title",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "api": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "filter": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/FilterValue"
+            },
+            "nullable": true
+          },
+          "iconKey": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "number"
+            ],
+            "type": "string",
+            "readOnly": true
+          },
+          "varianceType": {
+            "enum": [
+              "absolute",
+              "percentage"
+            ],
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SummariesApplicationCardTemplate": {
+        "required": [
+          "api",
+          "title",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "api": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "application"
+            ],
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
       "SplitterDatabaseTemplate": {
         "required": [
+          "sections",
           "type"
         ],
         "type": "object",
@@ -8404,8 +8622,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/SplitterDatabaseSectionSettings"
-            },
-            "nullable": true
+            }
           },
           "type": {
             "enum": [
@@ -8538,6 +8755,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/SplitterDatabaseTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/SummariesDatabaseTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/TabAttributesDatabaseTemplate"
@@ -8689,6 +8909,9 @@
       },
       "SimpleRelationsDatabaseTemplate": {
         "required": [
+          "delimiter",
+          "relationTypeKeys",
+          "title",
           "type"
         ],
         "type": "object",
@@ -8698,19 +8921,18 @@
             "nullable": true
           },
           "delimiter": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "relationTypeKeys": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "nullable": true
+            }
           },
           "title": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "type": {
             "enum": [
@@ -8762,6 +8984,7 @@
       },
       "SectionTitleDatabaseTemplate": {
         "required": [
+          "title",
           "type"
         ],
         "type": "object",
@@ -8798,6 +9021,10 @@
             "nullable": true
           },
           "title": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "tooltipKey": {
             "type": "string",
             "nullable": true
           },
@@ -9078,7 +9305,8 @@
       },
       "RelationsDatabaseTemplate": {
         "required": [
-          "type"
+          "type",
+          "values"
         ],
         "type": "object",
         "properties": {
@@ -9180,8 +9408,7 @@
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "nullable": true
+            }
           }
         },
         "additionalProperties": false
@@ -9507,7 +9734,8 @@
       },
       "PanelDatabaseTemplate": {
         "required": [
-          "type"
+          "type",
+          "values"
         ],
         "type": "object",
         "properties": {
@@ -9526,6 +9754,10 @@
             "$ref": "#/components/schemas/PanelDatabaseSettings"
           },
           "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "tooltipKey": {
             "type": "string",
             "nullable": true
           },
@@ -9641,6 +9873,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/SplitterDatabaseTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/SummariesDatabaseTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/TabAttributesDatabaseTemplate"
@@ -9859,15 +10094,19 @@
         "additionalProperties": false
       },
       "CodeTableLabelUserModelValue": {
+        "required": [
+          "title",
+          "userRelationTypeKey"
+        ],
         "type": "object",
         "properties": {
           "title": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "userRelationTypeKey": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -9904,6 +10143,10 @@
         "additionalProperties": false
       },
       "CodeTableLabelValueDatabaseTemplate": {
+        "required": [
+          "objectTypeKey",
+          "relationTypeKey"
+        ],
         "type": "object",
         "properties": {
           "applicationIds": {
@@ -9928,13 +10171,31 @@
             },
             "nullable": true
           },
-          "objectTypeKey": {
-            "type": "string",
+          "basedOnFirstLevelRelationTypeKeys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "nullable": true
           },
-          "relationTypeKey": {
-            "type": "string",
+          "basedOnSecondLevelRelationTypeKeys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "nullable": true
+          },
+          "isConditional": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "objectTypeKey": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "relationTypeKey": {
+            "minLength": 1,
+            "type": "string"
           },
           "spaceIds": {
             "oneOf": [
@@ -9960,6 +10221,7 @@
       },
       "ChildListDatabaseTemplate": {
         "required": [
+          "objectTypeKey",
           "type"
         ],
         "type": "object",
@@ -9969,8 +10231,8 @@
             "nullable": true
           },
           "objectTypeKey": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "title": {
             "type": "string",
@@ -10241,7 +10503,8 @@
       },
       "AttributesDatabaseTemplate": {
         "required": [
-          "type"
+          "type",
+          "values"
         ],
         "type": "object",
         "properties": {
@@ -10277,8 +10540,7 @@
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "nullable": true
+            }
           }
         },
         "additionalProperties": false
@@ -10455,6 +10717,9 @@
         "additionalProperties": false
       },
       "ApiChartDataTemplate": {
+        "required": [
+          "datasets"
+        ],
         "type": "object",
         "properties": {
           "datasets": {
@@ -10475,6 +10740,13 @@
           "dataApi": {
             "minLength": 1,
             "type": "string"
+          },
+          "filter": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/FilterValue"
+            },
+            "nullable": true
           },
           "options": {
             "nullable": true
@@ -11248,6 +11520,12 @@
                 },
                 {
                   "$ref": "#/components/schemas/HeaderlessTextareaPatchUpdateTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/SummariesDatabasePatchAddTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/SummariesDatabasePatchUpdateTemplate"
                 }
               ]
             },
@@ -11526,6 +11804,12 @@
                 },
                 {
                   "$ref": "#/components/schemas/HeaderlessTextareaPatchUpdateTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/SummariesDatabasePatchAddTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/SummariesDatabasePatchUpdateTemplate"
                 }
               ]
             },
@@ -11680,7 +11964,8 @@
       "NamedComponentDatabasePatchUpdateTemplate": {
         "required": [
           "action",
-          "type"
+          "type",
+          "value"
         ],
         "type": "object",
         "properties": {
@@ -11704,8 +11989,8 @@
             "readOnly": true
           },
           "value": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -11713,7 +11998,8 @@
       "NamedComponentDatabasePatchAddTemplate": {
         "required": [
           "action",
-          "type"
+          "type",
+          "value"
         ],
         "type": "object",
         "properties": {
@@ -11753,8 +12039,110 @@
             "readOnly": true
           },
           "value": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SummariesDatabasePatchUpdateTemplate": {
+        "required": [
+          "action",
+          "cards",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "action": {
+            "minLength": 1,
+            "enum": [
+              "update"
+            ],
+            "type": "string",
+            "readOnly": true
+          },
+          "cards": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/SummariesApplicationCardTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/SummariesNumberCardTemplate"
+                }
+              ]
+            }
+          },
+          "componentId": {
             "type": "string",
             "nullable": true
+          },
+          "type": {
+            "enum": [
+              "summaries"
+            ],
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SummariesDatabasePatchAddTemplate": {
+        "required": [
+          "action",
+          "cards",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "action": {
+            "minLength": 1,
+            "enum": [
+              "add"
+            ],
+            "type": "string",
+            "readOnly": true
+          },
+          "addAfterComponentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "addBeforeComponentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "addToEnd": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "addToStart": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "cards": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/SummariesApplicationCardTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/SummariesNumberCardTemplate"
+                }
+              ]
+            }
+          },
+          "componentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "enum": [
+              "summaries"
+            ],
+            "type": "string",
+            "readOnly": true
           }
         },
         "additionalProperties": false
@@ -12909,7 +13297,8 @@
       "AttributesDatabasePatchAddTemplate": {
         "required": [
           "action",
-          "type"
+          "type",
+          "values"
         ],
         "type": "object",
         "properties": {
@@ -12969,8 +13358,7 @@
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "nullable": true
+            }
           }
         },
         "additionalProperties": false
@@ -14058,6 +14446,7 @@
       "ChildListDatabasePatchUpdateTemplate": {
         "required": [
           "action",
+          "objectTypeKey",
           "type"
         ],
         "type": "object",
@@ -14075,8 +14464,8 @@
             "nullable": true
           },
           "objectTypeKey": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "title": {
             "type": "string",
@@ -14095,6 +14484,7 @@
       "ChildListDatabasePatchAddTemplate": {
         "required": [
           "action",
+          "objectTypeKey",
           "type"
         ],
         "type": "object",
@@ -14128,8 +14518,8 @@
             "nullable": true
           },
           "objectTypeKey": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "title": {
             "type": "string",
@@ -14640,7 +15030,8 @@
       "PanelDatabasePatchUpdateTemplate": {
         "required": [
           "action",
-          "type"
+          "type",
+          "values"
         ],
         "type": "object",
         "properties": {
@@ -14667,6 +15058,10 @@
             "$ref": "#/components/schemas/PanelDatabaseSettings"
           },
           "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "tooltipKey": {
             "type": "string",
             "nullable": true
           },
@@ -14784,6 +15179,9 @@
                   "$ref": "#/components/schemas/SplitterDatabaseTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/SummariesDatabaseTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/TabAttributesDatabaseTemplate"
                 },
                 {
@@ -14814,7 +15212,8 @@
       "PanelDatabasePatchAddTemplate": {
         "required": [
           "action",
-          "type"
+          "type",
+          "values"
         ],
         "type": "object",
         "properties": {
@@ -14860,6 +15259,10 @@
             "type": "string",
             "nullable": true
           },
+          "tooltipKey": {
+            "type": "string",
+            "nullable": true
+          },
           "type": {
             "enum": [
               "panel"
@@ -14972,6 +15375,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/SplitterDatabaseTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/SummariesDatabaseTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/TabAttributesDatabaseTemplate"
@@ -15291,6 +15697,12 @@
                 },
                 {
                   "$ref": "#/components/schemas/HeaderlessTextareaPatchUpdateTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/SummariesDatabasePatchAddTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/SummariesDatabasePatchUpdateTemplate"
                 }
               ]
             },
@@ -15636,7 +16048,8 @@
       "RelationsDatabasePatchUpdateTemplate": {
         "required": [
           "action",
-          "type"
+          "type",
+          "values"
         ],
         "type": "object",
         "properties": {
@@ -15746,8 +16159,7 @@
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "nullable": true
+            }
           }
         },
         "additionalProperties": false
@@ -15755,7 +16167,8 @@
       "RelationsDatabasePatchAddTemplate": {
         "required": [
           "action",
-          "type"
+          "type",
+          "values"
         ],
         "type": "object",
         "properties": {
@@ -15881,8 +16294,7 @@
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "nullable": true
+            }
           }
         },
         "additionalProperties": false
@@ -15964,6 +16376,7 @@
       "SectionTitleDatabasePatchUpdateTemplate": {
         "required": [
           "action",
+          "title",
           "type"
         ],
         "type": "object",
@@ -16008,6 +16421,10 @@
             "nullable": true
           },
           "title": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "tooltipKey": {
             "type": "string",
             "nullable": true
           },
@@ -16024,6 +16441,7 @@
       "SectionTitleDatabasePatchAddTemplate": {
         "required": [
           "action",
+          "title",
           "type"
         ],
         "type": "object",
@@ -16084,6 +16502,10 @@
             "nullable": true
           },
           "title": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "tooltipKey": {
             "type": "string",
             "nullable": true
           },
@@ -16174,6 +16596,9 @@
       "SimpleRelationsDatabasePatchUpdateTemplate": {
         "required": [
           "action",
+          "delimiter",
+          "relationTypeKeys",
+          "title",
           "type"
         ],
         "type": "object",
@@ -16191,19 +16616,18 @@
             "nullable": true
           },
           "delimiter": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "relationTypeKeys": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "nullable": true
+            }
           },
           "title": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "type": {
             "enum": [
@@ -16218,6 +16642,9 @@
       "SimpleRelationsDatabasePatchAddTemplate": {
         "required": [
           "action",
+          "delimiter",
+          "relationTypeKeys",
+          "title",
           "type"
         ],
         "type": "object",
@@ -16251,19 +16678,18 @@
             "nullable": true
           },
           "delimiter": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "relationTypeKeys": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "nullable": true
+            }
           },
           "title": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "type": {
             "enum": [
@@ -16278,6 +16704,7 @@
       "SplitterDatabasePatchUpdateTemplate": {
         "required": [
           "action",
+          "sections",
           "type"
         ],
         "type": "object",
@@ -16298,8 +16725,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/SplitterDatabaseSectionSettings"
-            },
-            "nullable": true
+            }
           },
           "type": {
             "enum": [
@@ -16314,6 +16740,7 @@
       "SplitterDatabasePatchAddTemplate": {
         "required": [
           "action",
+          "sections",
           "type"
         ],
         "type": "object",
@@ -16350,8 +16777,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/SplitterDatabaseSectionSettings"
-            },
-            "nullable": true
+            }
           },
           "type": {
             "enum": [
@@ -16679,6 +17105,12 @@
                 },
                 {
                   "$ref": "#/components/schemas/HeaderlessTextareaPatchUpdateTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/SummariesDatabasePatchAddTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/SummariesDatabasePatchUpdateTemplate"
                 }
               ]
             },
@@ -16998,7 +17430,8 @@
       "TabsDatabasePatchUpdateTemplate": {
         "required": [
           "action",
-          "type"
+          "type",
+          "values"
         ],
         "type": "object",
         "properties": {
@@ -17028,8 +17461,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TabSectionDatabaseTemplate"
-            },
-            "nullable": true
+            }
           }
         },
         "additionalProperties": false
@@ -17037,7 +17469,8 @@
       "TabsDatabasePatchAddTemplate": {
         "required": [
           "action",
-          "type"
+          "type",
+          "values"
         ],
         "type": "object",
         "properties": {
@@ -17083,8 +17516,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TabSectionDatabaseTemplate"
-            },
-            "nullable": true
+            }
           }
         },
         "additionalProperties": false
@@ -17486,6 +17918,9 @@
                   "$ref": "#/components/schemas/SplitterDatabaseTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/SummariesDatabaseTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/TabAttributesDatabaseTemplate"
                 },
                 {
@@ -17660,6 +18095,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/SplitterDatabaseTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/SummariesDatabaseTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/TabAttributesDatabaseTemplate"
@@ -17979,6 +18417,12 @@
                 },
                 {
                   "$ref": "#/components/schemas/HeaderlessTextareaPatchUpdateTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/SummariesDatabasePatchAddTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/SummariesDatabasePatchUpdateTemplate"
                 }
               ]
             },
@@ -18069,6 +18513,7 @@
                         "anonymous_concept_check_workflow_on_publish",
                         "is_data_model_object",
                         "is_data_model_column",
+                        "comments_allowed_in_concept",
                         "is_object_type_diagram",
                         "is_object_type_error",
                         "is_object_type_script",
@@ -18109,6 +18554,26 @@
                     },
                     "value": {
                       "type": "integer",
+                      "nullable": true
+                    }
+                  }
+                },
+                {
+                  "required": [
+                    "key"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "minLength": 1,
+                      "enum": [
+                        "create_as_diagram"
+                      ],
+                      "type": "string",
+                      "readOnly": true
+                    },
+                    "value": {
+                      "type": "string",
                       "nullable": true
                     }
                   }
@@ -18579,6 +19044,10 @@
             },
             "nullable": true
           },
+          "defaultValue": {
+            "type": "string",
+            "nullable": true
+          },
           "features": {
             "type": "array",
             "items": {
@@ -18689,7 +19158,8 @@
                         "is_core_diagram_data_type_icon",
                         "is_attribute_type_concept_approval_decision_note",
                         "is_attribute_type_concept_name",
-                        "is_domain_alternative_names"
+                        "is_domain_alternative_names",
+                        "is_numbering_toggle"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -18828,6 +19298,7 @@
                         "anonymous_concept_check_workflow_on_publish",
                         "is_data_model_object",
                         "is_data_model_column",
+                        "comments_allowed_in_concept",
                         "is_object_type_diagram",
                         "is_object_type_error",
                         "is_object_type_script",
@@ -18868,6 +19339,26 @@
                     },
                     "value": {
                       "type": "integer",
+                      "nullable": true
+                    }
+                  }
+                },
+                {
+                  "required": [
+                    "key"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "minLength": 1,
+                      "enum": [
+                        "create_as_diagram"
+                      ],
+                      "type": "string",
+                      "readOnly": true
+                    },
+                    "value": {
+                      "type": "string",
                       "nullable": true
                     }
                   }
@@ -19023,6 +19514,7 @@
                         "anonymous_concept_check_workflow_on_publish",
                         "is_data_model_object",
                         "is_data_model_column",
+                        "comments_allowed_in_concept",
                         "is_object_type_diagram",
                         "is_object_type_error",
                         "is_object_type_script",
@@ -19096,6 +19588,36 @@
                     "key": {
                       "minLength": 1,
                       "enum": [
+                        "create_as_diagram"
+                      ],
+                      "type": "string",
+                      "readOnly": true
+                    },
+                    "value": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "action": {
+                      "minLength": 1,
+                      "enum": [
+                        "add",
+                        "update"
+                      ],
+                      "type": "string",
+                      "readOnly": true
+                    }
+                  }
+                },
+                {
+                  "required": [
+                    "key",
+                    "action"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "minLength": 1,
+                      "enum": [
                         "is_data_dictionary_type",
                         "create_from_child_panel_only",
                         "create_without_concept",
@@ -19107,6 +19629,7 @@
                         "anonymous_concept_check_workflow_on_publish",
                         "is_data_model_object",
                         "is_data_model_column",
+                        "comments_allowed_in_concept",
                         "is_object_type_diagram",
                         "is_object_type_error",
                         "is_object_type_script",
@@ -19121,7 +19644,8 @@
                         "is_object_type_column",
                         "is_object_type_domain",
                         "is_object_type_domain_area",
-                        "facet_sort_order"
+                        "facet_sort_order",
+                        "create_as_diagram"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -20479,6 +21003,12 @@
                 },
                 {
                   "$ref": "#/components/schemas/HeaderlessTextareaPatchUpdateTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/SummariesDatabasePatchAddTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/SummariesDatabasePatchUpdateTemplate"
                 }
               ]
             },
@@ -20755,6 +21285,12 @@
               },
               {
                 "$ref": "#/components/schemas/HeaderlessTextareaPatchUpdateTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/SummariesDatabasePatchAddTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/SummariesDatabasePatchUpdateTemplate"
               }
             ],
             "nullable": true
@@ -20904,6 +21440,10 @@
             },
             "nullable": true
           },
+          "defaultValue": {
+            "type": "string",
+            "nullable": true
+          },
           "features": {
             "type": "array",
             "items": {
@@ -21014,7 +21554,8 @@
                         "is_core_diagram_data_type_icon",
                         "is_attribute_type_concept_approval_decision_note",
                         "is_attribute_type_concept_name",
-                        "is_domain_alternative_names"
+                        "is_domain_alternative_names",
+                        "is_numbering_toggle"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -21113,6 +21654,10 @@
             },
             "nullable": true
           },
+          "defaultValue": {
+            "type": "string",
+            "nullable": true
+          },
           "features": {
             "type": "array",
             "items": {
@@ -21223,7 +21768,8 @@
                         "is_core_diagram_data_type_icon",
                         "is_attribute_type_concept_approval_decision_note",
                         "is_attribute_type_concept_name",
-                        "is_domain_alternative_names"
+                        "is_domain_alternative_names",
+                        "is_numbering_toggle"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -21409,7 +21955,8 @@
                         "is_core_diagram_data_type_icon",
                         "is_attribute_type_concept_approval_decision_note",
                         "is_attribute_type_concept_name",
-                        "is_domain_alternative_names"
+                        "is_domain_alternative_names",
+                        "is_numbering_toggle"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -21568,6 +22115,7 @@
                         "is_attribute_type_concept_approval_decision_note",
                         "is_attribute_type_concept_name",
                         "is_domain_alternative_names",
+                        "is_numbering_toggle",
                         "fullness_score_value"
                       ],
                       "type": "string",
@@ -21852,7 +22400,8 @@
               "concept_approved",
               "anonymous_concept_approved",
               "concept_declined",
-              "anonymous_concept_declined"
+              "anonymous_concept_declined",
+              "package_synchronize_info"
             ],
             "type": "string",
             "nullable": true
@@ -22040,7 +22589,8 @@
               "concept_approved",
               "anonymous_concept_approved",
               "concept_declined",
-              "anonymous_concept_declined"
+              "anonymous_concept_declined",
+              "package_synchronize_info"
             ],
             "type": "string"
           },
@@ -22769,7 +23319,7 @@
             "type": "string",
             "readOnly": true
           },
-          "defaultDisableAutolayout": {
+          "defaultDisableAutoLayout": {
             "type": "boolean",
             "nullable": true
           },
@@ -22835,7 +23385,8 @@
             "enum": [
               "data_lineage",
               "entity_relation",
-              "relation"
+              "relation",
+              "conceptual_model"
             ],
             "type": "string",
             "nullable": true
@@ -22845,11 +23396,15 @@
       },
       "PkgGraphRelationTypesVM": {
         "required": [
+          "isDefault",
           "key",
           "lineDisplayTypeKey"
         ],
         "type": "object",
         "properties": {
+          "isDefault": {
+            "type": "boolean"
+          },
           "key": {
             "minLength": 1,
             "type": "string"
@@ -22861,7 +23416,11 @@
               "foreign_key",
               "knowledge_relation",
               "knowledge_parent",
-              "indirect_flow"
+              "indirect_flow",
+              "specialization",
+              "verbal_concept",
+              "association",
+              "standard"
             ],
             "type": "string"
           }
@@ -23007,7 +23566,7 @@
             "type": "string",
             "readOnly": true
           },
-          "defaultDisableAutolayout": {
+          "defaultDisableAutoLayout": {
             "type": "boolean",
             "nullable": true
           },
@@ -23074,7 +23633,8 @@
             "enum": [
               "data_lineage",
               "entity_relation",
-              "relation"
+              "relation",
+              "conceptual_model"
             ],
             "type": "string"
           }
@@ -23146,6 +23706,10 @@
             "type": "string",
             "readOnly": true
           },
+          "isDefault": {
+            "type": "boolean",
+            "nullable": true
+          },
           "key": {
             "minLength": 1,
             "type": "string"
@@ -23156,7 +23720,11 @@
               "foreign_key",
               "knowledge_relation",
               "knowledge_parent",
-              "indirect_flow"
+              "indirect_flow",
+              "specialization",
+              "verbal_concept",
+              "association",
+              "standard"
             ],
             "type": "string",
             "nullable": true
@@ -23189,6 +23757,7 @@
       "PkgPatchGraphRelationTypesAddVM": {
         "required": [
           "action",
+          "isDefault",
           "key",
           "lineDisplayTypeKey"
         ],
@@ -23202,6 +23771,9 @@
             "type": "string",
             "readOnly": true
           },
+          "isDefault": {
+            "type": "boolean"
+          },
           "key": {
             "minLength": 1,
             "type": "string"
@@ -23213,7 +23785,11 @@
               "foreign_key",
               "knowledge_relation",
               "knowledge_parent",
-              "indirect_flow"
+              "indirect_flow",
+              "specialization",
+              "verbal_concept",
+              "association",
+              "standard"
             ],
             "type": "string"
           }
@@ -24785,6 +25361,9 @@
                 "$ref": "#/components/schemas/SplitterDatabaseTemplate"
               },
               {
+                "$ref": "#/components/schemas/SummariesDatabaseTemplate"
+              },
+              {
                 "$ref": "#/components/schemas/TabAttributesDatabaseTemplate"
               },
               {
@@ -24956,6 +25535,9 @@
               },
               {
                 "$ref": "#/components/schemas/SplitterDatabaseTemplate"
+              },
+              {
+                "$ref": "#/components/schemas/SummariesDatabaseTemplate"
               },
               {
                 "$ref": "#/components/schemas/TabAttributesDatabaseTemplate"
@@ -25665,6 +26247,10 @@
             "type": "string",
             "readOnly": true
           },
+          "defaultValue": {
+            "type": "string",
+            "nullable": true
+          },
           "description": {
             "type": "string",
             "nullable": true
@@ -25779,7 +26365,8 @@
                         "is_core_diagram_data_type_icon",
                         "is_attribute_type_concept_approval_decision_note",
                         "is_attribute_type_concept_name",
-                        "is_domain_alternative_names"
+                        "is_domain_alternative_names",
+                        "is_numbering_toggle"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -25933,6 +26520,10 @@
             "type": "string",
             "readOnly": true
           },
+          "defaultValue": {
+            "type": "string",
+            "nullable": true
+          },
           "description": {
             "type": "string",
             "nullable": true
@@ -26047,7 +26638,8 @@
                         "is_core_diagram_data_type_icon",
                         "is_attribute_type_concept_approval_decision_note",
                         "is_attribute_type_concept_name",
-                        "is_domain_alternative_names"
+                        "is_domain_alternative_names",
+                        "is_numbering_toggle"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -26250,7 +26842,8 @@
                         "is_core_diagram_data_type_icon",
                         "is_attribute_type_concept_approval_decision_note",
                         "is_attribute_type_concept_name",
-                        "is_domain_alternative_names"
+                        "is_domain_alternative_names",
+                        "is_numbering_toggle"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -26409,6 +27002,7 @@
                         "is_attribute_type_concept_approval_decision_note",
                         "is_attribute_type_concept_name",
                         "is_domain_alternative_names",
+                        "is_numbering_toggle",
                         "fullness_score_value"
                       ],
                       "type": "string",
@@ -26670,6 +27264,7 @@
                       "minLength": 1,
                       "enum": [
                         "color",
+                        "one_global_font",
                         "object_ladder_numbering_pattern",
                         "changed_text_color",
                         "deleted_text_color"
@@ -26840,6 +27435,9 @@
                   "$ref": "#/components/schemas/SplitterDatabaseTemplate"
                 },
                 {
+                  "$ref": "#/components/schemas/SummariesDatabaseTemplate"
+                },
+                {
                   "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
                 },
                 {
@@ -26885,6 +27483,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/SplitterDatabaseTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/SummariesDatabaseTemplate"
                 },
                 {
                   "$ref": "#/components/schemas/TimeSelectorDatabaseTemplate"
@@ -27398,6 +27999,7 @@
                       "minLength": 1,
                       "enum": [
                         "color",
+                        "one_global_font",
                         "object_ladder_numbering_pattern",
                         "changed_text_color",
                         "deleted_text_color"
@@ -27691,6 +28293,7 @@
                       "minLength": 1,
                       "enum": [
                         "color",
+                        "one_global_font",
                         "object_ladder_numbering_pattern",
                         "changed_text_color",
                         "deleted_text_color"
@@ -27875,6 +28478,7 @@
                         "move_object_based_on_role",
                         "order_number",
                         "color",
+                        "one_global_font",
                         "object_ladder_numbering_pattern",
                         "changed_text_color",
                         "deleted_text_color",
@@ -28192,6 +28796,12 @@
                 },
                 {
                   "$ref": "#/components/schemas/HeaderlessTextareaPatchUpdateTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/SummariesDatabasePatchAddTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/SummariesDatabasePatchUpdateTemplate"
                 }
               ]
             },
@@ -28470,6 +29080,12 @@
                 },
                 {
                   "$ref": "#/components/schemas/HeaderlessTextareaPatchUpdateTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/SummariesDatabasePatchAddTemplate"
+                },
+                {
+                  "$ref": "#/components/schemas/SummariesDatabasePatchUpdateTemplate"
                 }
               ]
             },
@@ -29564,7 +30180,8 @@
                       "color",
                       "object_ladder_numbering_pattern",
                       "changed_text_color",
-                      "deleted_text_color"
+                      "deleted_text_color",
+                      "one_global_font"
                     ],
                     "type": "string",
                     "readOnly": true
@@ -29629,6 +30246,25 @@
                   },
                   "value": {
                     "$ref": "#/components/schemas/ExternalLoadsSettingsBase"
+                  }
+                }
+              },
+              {
+                "required": [
+                  "key"
+                ],
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "minLength": 1,
+                    "enum": [
+                      "numbering_options"
+                    ],
+                    "type": "string",
+                    "readOnly": true
+                  },
+                  "value": {
+                    "$ref": "#/components/schemas/ObjectNumberingOptions"
                   }
                 }
               },
@@ -30452,6 +31088,7 @@
                         "anonymous_concept_check_workflow_on_publish",
                         "is_data_model_object",
                         "is_data_model_column",
+                        "comments_allowed_in_concept",
                         "is_object_type_diagram",
                         "is_object_type_error",
                         "is_object_type_script",
@@ -30492,6 +31129,26 @@
                     },
                     "value": {
                       "type": "integer",
+                      "nullable": true
+                    }
+                  }
+                },
+                {
+                  "required": [
+                    "key"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "minLength": 1,
+                      "enum": [
+                        "create_as_diagram"
+                      ],
+                      "type": "string",
+                      "readOnly": true
+                    },
+                    "value": {
+                      "type": "string",
                       "nullable": true
                     }
                   }
@@ -30787,7 +31444,8 @@
               "concept_approved",
               "anonymous_concept_approved",
               "concept_declined",
-              "anonymous_concept_declined"
+              "anonymous_concept_declined",
+              "package_synchronize_info"
             ],
             "type": "string"
           },
@@ -30979,7 +31637,7 @@
         ],
         "type": "object",
         "properties": {
-          "defaultDisableAutolayout": {
+          "defaultDisableAutoLayout": {
             "type": "boolean",
             "nullable": true
           },
@@ -31046,7 +31704,8 @@
             "enum": [
               "data_lineage",
               "entity_relation",
-              "relation"
+              "relation",
+              "conceptual_model"
             ],
             "type": "string"
           }
@@ -31363,6 +32022,9 @@
                 "$ref": "#/components/schemas/SplitterDatabaseTemplate"
               },
               {
+                "$ref": "#/components/schemas/SummariesDatabaseTemplate"
+              },
+              {
                 "$ref": "#/components/schemas/TabAttributesDatabaseTemplate"
               },
               {
@@ -31522,6 +32184,10 @@
         ],
         "type": "object",
         "properties": {
+          "defaultValue": {
+            "type": "string",
+            "nullable": true
+          },
           "description": {
             "type": "string",
             "nullable": true
@@ -31636,7 +32302,8 @@
                         "is_core_diagram_data_type_icon",
                         "is_attribute_type_concept_approval_decision_note",
                         "is_attribute_type_concept_name",
-                        "is_domain_alternative_names"
+                        "is_domain_alternative_names",
+                        "is_numbering_toggle"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -31907,6 +32574,7 @@
                       "minLength": 1,
                       "enum": [
                         "color",
+                        "one_global_font",
                         "object_ladder_numbering_pattern",
                         "changed_text_color",
                         "deleted_text_color"
