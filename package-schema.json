@@ -8008,12 +8008,6 @@
         "type": "object",
         "allOf": [
           {
-            "required": [
-              "value",
-              "columns"
-            ]
-          },
-          {
             "anyOf": [
               {
                 "required": [
