@@ -8009,20 +8009,20 @@
         "oneOf": [
           {
             "required": [
-              "Value"
+              "value"
             ],
             "properties": {
-              "Value": {
+              "value": {
                 "type": "string"
               }
             }
           },
           {
             "required": [
-              "Columns"
+              "columns"
             ],
             "properties": {
-              "Columns": {
+              "columns": {
                 "type": "array",
                 "items": {
                   "oneOf": [
