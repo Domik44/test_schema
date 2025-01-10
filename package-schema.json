@@ -8009,7 +8009,8 @@
         "oneOf": [
           {
             "required": [
-              "columns or value"
+              "columns",
+              "value"
             ],
             "properties": {
               "value": {
@@ -8019,7 +8020,8 @@
           },
           {
             "required": [
-              "columns or value"
+              "columns",
+              "value"
             ],
             "properties": {
               "columns": {
