@@ -8006,7 +8006,7 @@
           "type"
         ],
         "type": "object",
-        "oneOf": [
+        "anyOf": [
           {
             "required": [
               "columns",
