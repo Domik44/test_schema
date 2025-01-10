@@ -8011,7 +8011,40 @@
             "required": [
               "columns",
               "value"
-            ]
+            ],
+            "not": {
+              "properties": {
+                "value": {
+                  "type": "string"
+                },
+                "columns": {
+                  "type": "array",
+                  "items": {
+                    "oneOf": [
+                      {
+                        "$ref": "#/components/schemas/ApiTableAttributeDatabaseColumn"
+                      },
+                      {
+                        "$ref": "#/components/schemas/ApiTableDefinedKeyDatabaseColumn"
+                      },
+                      {
+                        "$ref": "#/components/schemas/ApiTableExternalDatabaseColumn"
+                      },
+                      {
+                        "$ref": "#/components/schemas/ApiTableObjectRelationDatabaseColumn"
+                      },
+                      {
+                        "$ref": "#/components/schemas/ApiTableUserRelationDatabaseColumn"
+                      },
+                      {
+                        "$ref": "#/components/schemas/ApiTableCustomActionButtonDatabaseColumn"
+                      }
+                    ]
+                  },
+                  "nullable": true
+                }
+              }
+            }
           },
           {
             "required": [
@@ -8034,7 +8067,7 @@
             ],
             "not": {
               "required": [
-                "values"
+                "value"
               ]
             },
             "properties": {
