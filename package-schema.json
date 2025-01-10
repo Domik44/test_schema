@@ -8011,96 +8011,22 @@
             "required": [
               "value",
               "columns"
-            ],
-            "anyOf": [
-              {
-                "required": [
-                  "value"
-                ],
-                "properties": {
-                  "value": {
-                    "type": "string"
-                  }
-                }
-              },
-              {
-                "required": [
-                  "columns"
-                ],
-                "properties": {
-                  "columns": {
-                    "type": "array",
-                    "items": {
-                      "oneOf": [
-                        {
-                          "$ref": "#/components/schemas/ApiTableAttributeDatabaseColumn"
-                        },
-                        {
-                          "$ref": "#/components/schemas/ApiTableDefinedKeyDatabaseColumn"
-                        },
-                        {
-                          "$ref": "#/components/schemas/ApiTableExternalDatabaseColumn"
-                        },
-                        {
-                          "$ref": "#/components/schemas/ApiTableObjectRelationDatabaseColumn"
-                        },
-                        {
-                          "$ref": "#/components/schemas/ApiTableUserRelationDatabaseColumn"
-                        },
-                        {
-                          "$ref": "#/components/schemas/ApiTableCustomActionButtonDatabaseColumn"
-                        }
-                      ]
-                    },
-                    "nullable": true
-                  }
-                }
-              }
             ]
-          }
-        ],
-        "anyOf": [
-          {
-            "required": [
-              "value"
-            ],
-            "properties": {
-              "value": {
-                "type": "string"
-              }
-            }
           },
           {
-            "required": [
-              "columns"
-            ],
-            "properties": {
-              "columns": {
-                "type": "array",
-                "items": {
-                  "oneOf": [
-                    {
-                      "$ref": "#/components/schemas/ApiTableAttributeDatabaseColumn"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ApiTableDefinedKeyDatabaseColumn"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ApiTableExternalDatabaseColumn"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ApiTableObjectRelationDatabaseColumn"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ApiTableUserRelationDatabaseColumn"
-                    },
-                    {
-                      "$ref": "#/components/schemas/ApiTableCustomActionButtonDatabaseColumn"
-                    }
+            "not": {
+              "allOf": [
+                {
+                  "required": [
+                    "value"
                   ]
                 },
-                "nullable": true
-              }
+                {
+                  "required": [
+                    "columns"
+                  ]
+                }
+              ]
             }
           }
         ],
