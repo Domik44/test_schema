@@ -8006,27 +8006,48 @@
           "type"
         ],
         "type": "object",
-        "allOf": [
+        "oneOf": [
           {
             "required": [
-              "value",
-              "columns"
-            ]
+              "columns or value"
+            ],
+            "properties": {
+              "value": {
+                "type": "string"
+              }
+            }
           },
           {
-            "not": {
-              "allOf": [
-                {
-                  "required": [
-                    "value"
+            "required": [
+              "columns or value"
+            ],
+            "properties": {
+              "columns": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/ApiTableAttributeDatabaseColumn"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApiTableDefinedKeyDatabaseColumn"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApiTableExternalDatabaseColumn"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApiTableObjectRelationDatabaseColumn"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApiTableUserRelationDatabaseColumn"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApiTableCustomActionButtonDatabaseColumn"
+                    }
                   ]
                 },
-                {
-                  "required": [
-                    "columns"
-                  ]
-                }
-              ]
+                "nullable": true
+              }
             }
           }
         ],
