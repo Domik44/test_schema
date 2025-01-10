@@ -8009,6 +8009,12 @@
         "oneOf": [
           {
             "required": [
+              "columns",
+              "value"
+            ]
+          },
+          {
+            "required": [
               "value"
             ],
             "not": {
