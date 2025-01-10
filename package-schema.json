@@ -8013,6 +8013,11 @@
             "required": [
               "value"
             ],
+            "not": {
+              "required": [
+                "columns"
+              ]
+            },
             "properties": {
               "value": {
                 "type": "string"
@@ -8023,6 +8028,11 @@
             "required": [
               "columns"
             ],
+            "not": {
+              "required": [
+                "values"
+              ]
+            },
             "properties": {
               "columns": {
                 "type": "array",
