@@ -8006,52 +8006,94 @@
           "type"
         ],
         "type": "object",
-        "allOf": [
+        "oneOf": [
           {
-            "anyOf": [
-              {
-                "required": [
-                  "value"
-                ],
-                "properties": {
-                  "value": {
-                    "type": "string"
-                  }
-                }
+            "required": [
+              "value",
+              "columns"
+            ],
+            "properties": {
+              "value": {
+                "type": "string"
               },
-              {
-                "required": [
-                  "columns"
-                ],
-                "properties": {
-                  "columns": {
-                    "type": "array",
-                    "items": {
-                      "oneOf": [
-                        {
-                          "$ref": "#/components/schemas/ApiTableAttributeDatabaseColumn"
-                        },
-                        {
-                          "$ref": "#/components/schemas/ApiTableDefinedKeyDatabaseColumn"
-                        },
-                        {
-                          "$ref": "#/components/schemas/ApiTableExternalDatabaseColumn"
-                        },
-                        {
-                          "$ref": "#/components/schemas/ApiTableObjectRelationDatabaseColumn"
-                        },
-                        {
-                          "$ref": "#/components/schemas/ApiTableUserRelationDatabaseColumn"
-                        },
-                        {
-                          "$ref": "#/components/schemas/ApiTableCustomActionButtonDatabaseColumn"
-                        }
-                      ]
+              "columns": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/ApiTableAttributeDatabaseColumn"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApiTableDefinedKeyDatabaseColumn"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApiTableExternalDatabaseColumn"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApiTableObjectRelationDatabaseColumn"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApiTableUserRelationDatabaseColumn"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApiTableCustomActionButtonDatabaseColumn"
                     }
-                  }
+                  ]
                 }
               }
-            ]
+            }
+          },
+          {
+            "required": [
+              "value"
+            ],
+            "not": {
+              "required": [
+                "columns"
+              ]
+            },
+            "properties": {
+              "value": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "required": [
+              "columns"
+            ],
+            "not": {
+              "required": [
+                "value"
+              ]
+            },
+            "properties": {
+              "columns": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/ApiTableAttributeDatabaseColumn"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApiTableDefinedKeyDatabaseColumn"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApiTableExternalDatabaseColumn"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApiTableObjectRelationDatabaseColumn"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApiTableUserRelationDatabaseColumn"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApiTableCustomActionButtonDatabaseColumn"
+                    }
+                  ]
+                }
+              }
+            }
           }
         ],
         "properties": {
@@ -32826,7 +32868,7 @@
             "nullable": true
           }
         },
-        "additionalProperties": false 
+        "additionalProperties": false
       }
     }
   }
