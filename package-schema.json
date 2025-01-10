@@ -8002,9 +8002,35 @@
       },
       "ApiTableDatabaseTemplate": {
         "required": [
+          "tableId",
           "type"
         ],
         "type": "object",
+        "oneOf": [
+          {
+            "required": [
+              "Value"
+            ],
+            "properties": {
+              "Value": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "required": [
+              "Columns"
+            ],
+            "properties": {
+              "Columns": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/IBaseApiTableDatabaseColumn"
+                }
+              }
+            }
+          }
+        ],
         "properties": {
           "addNewObjectButton": {
             "type": "boolean",
@@ -8079,8 +8105,8 @@
             "nullable": true
           },
           "tableId": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "title": {
             "type": "string",
@@ -12954,6 +12980,7 @@
       "ApiTableDatabasePatchUpdateTemplate": {
         "required": [
           "action",
+          "tableId",
           "type"
         ],
         "type": "object",
@@ -13039,8 +13066,8 @@
             "nullable": true
           },
           "tableId": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "title": {
             "type": "string",
@@ -13063,6 +13090,7 @@
       "ApiTableDatabasePatchAddTemplate": {
         "required": [
           "action",
+          "tableId",
           "type"
         ],
         "type": "object",
@@ -13164,8 +13192,8 @@
             "nullable": true
           },
           "tableId": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "title": {
             "type": "string",
@@ -13188,6 +13216,7 @@
       "AttributesDatabasePatchUpdateTemplate": {
         "required": [
           "action",
+          "tableId",
           "type"
         ],
         "type": "object",
@@ -13273,8 +13302,8 @@
             "nullable": true
           },
           "tableId": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "title": {
             "type": "string",
