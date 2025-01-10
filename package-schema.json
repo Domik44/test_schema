@@ -8002,14 +8002,15 @@
       },
       "ApiTableDatabaseTemplate": {
         "required": [
+          "columns",
           "tableId",
-          "type"
+          "type",
+          "value"
         ],
         "type": "object",
         "oneOf": [
           {
             "required": [
-              "columns",
               "value"
             ],
             "properties": {
@@ -8020,8 +8021,7 @@
           },
           {
             "required": [
-              "columns",
-              "value"
+              "columns"
             ],
             "properties": {
               "columns": {
@@ -8089,8 +8089,7 @@
                   "$ref": "#/components/schemas/ApiTableCustomActionButtonDatabaseColumn"
                 }
               ]
-            },
-            "nullable": true
+            }
           },
           "componentId": {
             "type": "string",
@@ -8142,8 +8141,8 @@
             "readOnly": true
           },
           "value": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -13002,8 +13001,10 @@
       "ApiTableDatabasePatchUpdateTemplate": {
         "required": [
           "action",
+          "columns",
           "tableId",
-          "type"
+          "type",
+          "value"
         ],
         "type": "object",
         "properties": {
@@ -13050,8 +13051,7 @@
                   "$ref": "#/components/schemas/ApiTableCustomActionButtonDatabaseColumn"
                 }
               ]
-            },
-            "nullable": true
+            }
           },
           "componentId": {
             "type": "string",
@@ -13103,8 +13103,8 @@
             "readOnly": true
           },
           "value": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -13112,8 +13112,10 @@
       "ApiTableDatabasePatchAddTemplate": {
         "required": [
           "action",
+          "columns",
           "tableId",
-          "type"
+          "type",
+          "value"
         ],
         "type": "object",
         "properties": {
@@ -13176,8 +13178,7 @@
                   "$ref": "#/components/schemas/ApiTableCustomActionButtonDatabaseColumn"
                 }
               ]
-            },
-            "nullable": true
+            }
           },
           "componentId": {
             "type": "string",
@@ -13229,8 +13230,8 @@
             "readOnly": true
           },
           "value": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -13238,8 +13239,10 @@
       "AttributesDatabasePatchUpdateTemplate": {
         "required": [
           "action",
+          "columns",
           "tableId",
-          "type"
+          "type",
+          "value"
         ],
         "type": "object",
         "properties": {
@@ -13286,8 +13289,7 @@
                   "$ref": "#/components/schemas/ApiTableCustomActionButtonDatabaseColumn"
                 }
               ]
-            },
-            "nullable": true
+            }
           },
           "componentId": {
             "type": "string",
@@ -13339,8 +13341,8 @@
             "readOnly": true
           },
           "value": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           }
         },
         "additionalProperties": false
