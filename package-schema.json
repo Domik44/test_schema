@@ -8008,12 +8008,12 @@
         "type": "object",
         "allOf": [
           {
-            "oneOf": [
+            "anyOf": [
               {
                 "required": [
                   "value"
                 ],
-                "properties": { 
+                "properties": {
                   "value": {
                     "type": "string"
                   }
@@ -8047,8 +8047,7 @@
                           "$ref": "#/components/schemas/ApiTableCustomActionButtonDatabaseColumn"
                         }
                       ]
-                    },
-                    "nullable": true
+                    }
                   }
                 }
               }
