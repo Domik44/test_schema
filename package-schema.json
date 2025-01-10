@@ -8002,10 +8002,8 @@
       },
       "ApiTableDatabaseTemplate": {
         "required": [
-          "columns",
           "tableId",
-          "type",
-          "value"
+          "type"
         ],
         "type": "object",
         "oneOf": [
@@ -8099,7 +8097,8 @@
                   "$ref": "#/components/schemas/ApiTableCustomActionButtonDatabaseColumn"
                 }
               ]
-            }
+            },
+            "nullable": true
           },
           "componentId": {
             "type": "string",
@@ -8151,8 +8150,8 @@
             "readOnly": true
           },
           "value": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -13011,10 +13010,8 @@
       "ApiTableDatabasePatchUpdateTemplate": {
         "required": [
           "action",
-          "columns",
           "tableId",
-          "type",
-          "value"
+          "type"
         ],
         "type": "object",
         "properties": {
@@ -13061,7 +13058,8 @@
                   "$ref": "#/components/schemas/ApiTableCustomActionButtonDatabaseColumn"
                 }
               ]
-            }
+            },
+            "nullable": true
           },
           "componentId": {
             "type": "string",
@@ -13113,8 +13111,8 @@
             "readOnly": true
           },
           "value": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -13122,10 +13120,8 @@
       "ApiTableDatabasePatchAddTemplate": {
         "required": [
           "action",
-          "columns",
           "tableId",
-          "type",
-          "value"
+          "type"
         ],
         "type": "object",
         "properties": {
@@ -13188,7 +13184,8 @@
                   "$ref": "#/components/schemas/ApiTableCustomActionButtonDatabaseColumn"
                 }
               ]
-            }
+            },
+            "nullable": true
           },
           "componentId": {
             "type": "string",
@@ -13240,8 +13237,8 @@
             "readOnly": true
           },
           "value": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -13249,10 +13246,8 @@
       "AttributesDatabasePatchUpdateTemplate": {
         "required": [
           "action",
-          "columns",
           "tableId",
-          "type",
-          "value"
+          "type"
         ],
         "type": "object",
         "properties": {
@@ -13299,7 +13294,8 @@
                   "$ref": "#/components/schemas/ApiTableCustomActionButtonDatabaseColumn"
                 }
               ]
-            }
+            },
+            "nullable": true
           },
           "componentId": {
             "type": "string",
@@ -13351,8 +13347,8 @@
             "readOnly": true
           },
           "value": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
