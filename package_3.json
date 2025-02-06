@@ -169,6 +169,13 @@
             },
             "nullable": true
           },
+          "codetableValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PkgCodetableValueVM"
+            },
+            "nullable": true
+          },
           "colors": {
             "type": "array",
             "items": {
@@ -2243,6 +2250,7 @@
                         "is_allowed_to_move_in_move_object_based_on_role",
                         "can_be_shown_in_diagram",
                         "on_object_creation_is_creator_auto_assigned",
+                        "disable_excel_object_export",
                         "is_user_object_relation_type_favourite",
                         "is_user_object_relation_type_watch",
                         "is_user_object_relation_type_shared_with_me",
@@ -2422,6 +2430,7 @@
                         "is_allowed_to_move_in_move_object_based_on_role",
                         "can_be_shown_in_diagram",
                         "on_object_creation_is_creator_auto_assigned",
+                        "disable_excel_object_export",
                         "is_user_object_relation_type_favourite",
                         "is_user_object_relation_type_watch",
                         "is_user_object_relation_type_shared_with_me",
@@ -2536,6 +2545,7 @@
                         "is_allowed_to_move_in_move_object_based_on_role",
                         "can_be_shown_in_diagram",
                         "on_object_creation_is_creator_auto_assigned",
+                        "disable_excel_object_export",
                         "is_user_object_relation_type_favourite",
                         "is_user_object_relation_type_watch",
                         "is_user_object_relation_type_shared_with_me",
@@ -2620,6 +2630,7 @@
                         "is_allowed_to_move_in_move_object_based_on_role",
                         "can_be_shown_in_diagram",
                         "on_object_creation_is_creator_auto_assigned",
+                        "disable_excel_object_export",
                         "is_user_object_relation_type_favourite",
                         "is_user_object_relation_type_watch",
                         "is_user_object_relation_type_shared_with_me",
@@ -2977,6 +2988,7 @@
                       "force_confirmation_after_object_move",
                       "copy_paste_as_plaintext_like",
                       "word_diff_use_highlight",
+                      "export_use_space_app_object_type_check",
                       "is_application_data_dictionary",
                       "is_application_code_tables",
                       "is_application_dawiso_objects",
@@ -3120,6 +3132,25 @@
                   "key": {
                     "minLength": 1,
                     "enum": [
+                      "lineage_parsing_options"
+                    ],
+                    "type": "string",
+                    "readOnly": true
+                  },
+                  "value": {
+                    "$ref": "#/components/schemas/LineageParsingOptions"
+                  }
+                }
+              },
+              {
+                "required": [
+                  "key"
+                ],
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "minLength": 1,
+                    "enum": [
                       "token_keyword_spaces",
                       "token_keyword_apps"
                     ],
@@ -3144,13 +3175,86 @@
         },
         "additionalProperties": false
       },
+      "LineageParsingOptions": {
+        "type": "object",
+        "properties": {
+          "attributeTypeMapping": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AttributeTypeMap"
+            },
+            "nullable": true
+          },
+          "objectTypeMapping": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ObjectTypeMap"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ObjectTypeMap": {
+        "type": "object",
+        "properties": {
+          "objectType": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AttributeTypeMap": {
+        "type": "object",
+        "properties": {
+          "attributeType": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ObjectNumberingOptions": {
         "type": "object",
         "properties": {
+          "rootObjectNumberings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RootObjectNumbering"
+            },
+            "nullable": true
+          },
           "startFromLevel": {
             "type": "integer",
             "format": "int32",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RootObjectNumbering": {
+        "required": [
+          "objectId",
+          "startFromLevel"
+        ],
+        "type": "object",
+        "properties": {
+          "objectId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "startFromLevel": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -3381,6 +3485,7 @@
                       "force_confirmation_after_object_move",
                       "copy_paste_as_plaintext_like",
                       "word_diff_use_highlight",
+                      "export_use_space_app_object_type_check",
                       "is_application_data_dictionary",
                       "is_application_code_tables",
                       "is_application_dawiso_objects",
@@ -3512,6 +3617,25 @@
                   },
                   "value": {
                     "$ref": "#/components/schemas/ObjectNumberingOptions"
+                  }
+                }
+              },
+              {
+                "required": [
+                  "key"
+                ],
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "minLength": 1,
+                    "enum": [
+                      "lineage_parsing_options"
+                    ],
+                    "type": "string",
+                    "readOnly": true
+                  },
+                  "value": {
+                    "$ref": "#/components/schemas/LineageParsingOptions"
                   }
                 }
               },
@@ -4525,7 +4649,9 @@
                         "is_relation_in_space",
                         "is_not_presented_in_changes",
                         "can_be_shown_in_diagram",
-                        "is_domain_of"
+                        "is_domain_of",
+                        "disable_excel_template_export",
+                        "disable_excel_object_export"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -4760,7 +4886,9 @@
                         "is_relation_in_space",
                         "is_not_presented_in_changes",
                         "can_be_shown_in_diagram",
-                        "is_domain_of"
+                        "is_domain_of",
+                        "disable_excel_template_export",
+                        "disable_excel_object_export"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -4890,7 +5018,9 @@
                         "is_relation_in_space",
                         "is_not_presented_in_changes",
                         "can_be_shown_in_diagram",
-                        "is_domain_of"
+                        "is_domain_of",
+                        "disable_excel_template_export",
+                        "disable_excel_object_export"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -4986,6 +5116,8 @@
                         "is_not_presented_in_changes",
                         "can_be_shown_in_diagram",
                         "is_domain_of",
+                        "disable_excel_template_export",
+                        "disable_excel_object_export",
                         "fullness_score_value"
                       ],
                       "type": "string",
@@ -5114,7 +5246,9 @@
                       "is_relation_in_space",
                       "is_not_presented_in_changes",
                       "can_be_shown_in_diagram",
-                      "is_domain_of"
+                      "is_domain_of",
+                      "disable_excel_template_export",
+                      "disable_excel_object_export"
                     ],
                     "type": "string",
                     "readOnly": true
@@ -5221,7 +5355,9 @@
                       "is_relation_in_space",
                       "is_not_presented_in_changes",
                       "can_be_shown_in_diagram",
-                      "is_domain_of"
+                      "is_domain_of",
+                      "disable_excel_template_export",
+                      "disable_excel_object_export"
                     ],
                     "type": "string",
                     "readOnly": true
@@ -7653,18 +7789,20 @@
       },
       "WordCloudDatabaseTemplate": {
         "required": [
+          "apiType",
           "description",
+          "title",
           "type"
         ],
         "type": "object",
         "properties": {
           "apiType": {
+            "minLength": 1,
             "enum": [
               "visitedObjects",
               "searchedTerms"
             ],
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "componentId": {
             "type": "string",
@@ -7682,8 +7820,8 @@
             "nullable": true
           },
           "title": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "type": {
             "enum": [
@@ -8002,9 +8140,100 @@
       },
       "ApiTableDatabaseTemplate": {
         "required": [
+          "tableId",
           "type"
         ],
         "type": "object",
+        "oneOf": [
+          {
+            "required": [
+              "value",
+              "columns"
+            ],
+            "properties": {
+              "value": {
+                "type": "string"
+              },
+              "columns": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/ApiTableAttributeDatabaseColumn"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApiTableDefinedKeyDatabaseColumn"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApiTableExternalDatabaseColumn"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApiTableObjectRelationDatabaseColumn"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApiTableUserRelationDatabaseColumn"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApiTableCustomActionButtonDatabaseColumn"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "required": [
+              "value"
+            ],
+            "not": {
+              "required": [
+                "columns"
+              ]
+            },
+            "properties": {
+              "value": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "required": [
+              "columns"
+            ],
+            "not": {
+              "required": [
+                "value"
+              ]
+            },
+            "properties": {
+              "columns": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/ApiTableAttributeDatabaseColumn"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApiTableDefinedKeyDatabaseColumn"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApiTableExternalDatabaseColumn"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApiTableObjectRelationDatabaseColumn"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApiTableUserRelationDatabaseColumn"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ApiTableCustomActionButtonDatabaseColumn"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ],
         "properties": {
           "addNewObjectButton": {
             "type": "boolean",
@@ -8079,8 +8308,8 @@
             "nullable": true
           },
           "tableId": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "title": {
             "type": "string",
@@ -9040,7 +9269,8 @@
       },
       "SectionTitleActionTypeSectionDatabaseTemplate": {
         "required": [
-          "type"
+          "type",
+          "values"
         ],
         "type": "object",
         "properties": {
@@ -9066,8 +9296,7 @@
                 "generateDomains"
               ],
               "type": "string"
-            },
-            "nullable": true
+            }
           }
         },
         "additionalProperties": false
@@ -9305,8 +9534,7 @@
       },
       "RelationsDatabaseTemplate": {
         "required": [
-          "type",
-          "values"
+          "type"
         ],
         "type": "object",
         "properties": {
@@ -9408,7 +9636,8 @@
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -9644,6 +9873,7 @@
         "type": "object",
         "properties": {
           "attributeTypeKey": {
+            "minLength": 1,
             "type": "string"
           },
           "componentId": {
@@ -10064,7 +10294,8 @@
       },
       "CodeTableLabelUserDatabaseTemplate": {
         "required": [
-          "type"
+          "type",
+          "values"
         ],
         "type": "object",
         "properties": {
@@ -10087,22 +10318,20 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CodeTableLabelUserModelValue"
-            },
-            "nullable": true
+            }
           }
         },
         "additionalProperties": false
       },
       "CodeTableLabelUserModelValue": {
         "required": [
-          "title",
           "userRelationTypeKey"
         ],
         "type": "object",
         "properties": {
           "title": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "userRelationTypeKey": {
             "minLength": 1,
@@ -10113,7 +10342,8 @@
       },
       "CodeTableLabelDatabaseTemplate": {
         "required": [
-          "type"
+          "type",
+          "values"
         ],
         "type": "object",
         "properties": {
@@ -10136,8 +10366,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CodeTableLabelValueDatabaseTemplate"
-            },
-            "nullable": true
+            }
           }
         },
         "additionalProperties": false
@@ -12954,6 +13183,7 @@
       "ApiTableDatabasePatchUpdateTemplate": {
         "required": [
           "action",
+          "tableId",
           "type"
         ],
         "type": "object",
@@ -13039,8 +13269,8 @@
             "nullable": true
           },
           "tableId": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "title": {
             "type": "string",
@@ -13063,6 +13293,7 @@
       "ApiTableDatabasePatchAddTemplate": {
         "required": [
           "action",
+          "tableId",
           "type"
         ],
         "type": "object",
@@ -13164,8 +13395,8 @@
             "nullable": true
           },
           "tableId": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "title": {
             "type": "string",
@@ -13188,6 +13419,7 @@
       "AttributesDatabasePatchUpdateTemplate": {
         "required": [
           "action",
+          "tableId",
           "type"
         ],
         "type": "object",
@@ -13273,8 +13505,8 @@
             "nullable": true
           },
           "tableId": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "title": {
             "type": "string",
@@ -14538,7 +14770,8 @@
       "CodeTableLabelUserDatabasePatchUpdateTemplate": {
         "required": [
           "action",
-          "type"
+          "type",
+          "values"
         ],
         "type": "object",
         "properties": {
@@ -14569,8 +14802,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CodeTableLabelUserModelValue"
-            },
-            "nullable": true
+            }
           }
         },
         "additionalProperties": false
@@ -14578,7 +14810,8 @@
       "CodeTableLabelUserDatabasePatchAddTemplate": {
         "required": [
           "action",
-          "type"
+          "type",
+          "values"
         ],
         "type": "object",
         "properties": {
@@ -14625,8 +14858,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CodeTableLabelUserModelValue"
-            },
-            "nullable": true
+            }
           }
         },
         "additionalProperties": false
@@ -14634,7 +14866,8 @@
       "CodeTableLabelDatabasePatchUpdateTemplate": {
         "required": [
           "action",
-          "type"
+          "type",
+          "values"
         ],
         "type": "object",
         "properties": {
@@ -14665,8 +14898,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CodeTableLabelValueDatabaseTemplate"
-            },
-            "nullable": true
+            }
           }
         },
         "additionalProperties": false
@@ -14674,7 +14906,8 @@
       "CodeTableLabelDatabasePatchAddTemplate": {
         "required": [
           "action",
-          "type"
+          "type",
+          "values"
         ],
         "type": "object",
         "properties": {
@@ -14721,8 +14954,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CodeTableLabelValueDatabaseTemplate"
-            },
-            "nullable": true
+            }
           }
         },
         "additionalProperties": false
@@ -15843,6 +16075,7 @@
             "readOnly": true
           },
           "attributeTypeKey": {
+            "minLength": 1,
             "type": "string"
           },
           "componentId": {
@@ -15905,6 +16138,7 @@
             "nullable": true
           },
           "attributeTypeKey": {
+            "minLength": 1,
             "type": "string"
           },
           "componentId": {
@@ -16048,8 +16282,7 @@
       "RelationsDatabasePatchUpdateTemplate": {
         "required": [
           "action",
-          "type",
-          "values"
+          "type"
         ],
         "type": "object",
         "properties": {
@@ -16159,7 +16392,8 @@
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -16167,8 +16401,7 @@
       "RelationsDatabasePatchAddTemplate": {
         "required": [
           "action",
-          "type",
-          "values"
+          "type"
         ],
         "type": "object",
         "properties": {
@@ -16294,7 +16527,8 @@
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -17666,7 +17900,9 @@
       "WordCloudDatabasePatchUpdateTemplate": {
         "required": [
           "action",
+          "apiType",
           "description",
+          "title",
           "type"
         ],
         "type": "object",
@@ -17680,12 +17916,12 @@
             "readOnly": true
           },
           "apiType": {
+            "minLength": 1,
             "enum": [
               "visitedObjects",
               "searchedTerms"
             ],
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "componentId": {
             "type": "string",
@@ -17703,8 +17939,8 @@
             "nullable": true
           },
           "title": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "type": {
             "enum": [
@@ -17719,7 +17955,9 @@
       "WordCloudDatabasePatchAddTemplate": {
         "required": [
           "action",
+          "apiType",
           "description",
+          "title",
           "type"
         ],
         "type": "object",
@@ -17749,12 +17987,12 @@
             "nullable": true
           },
           "apiType": {
+            "minLength": 1,
             "enum": [
               "visitedObjects",
               "searchedTerms"
             ],
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "componentId": {
             "type": "string",
@@ -17772,8 +18010,8 @@
             "nullable": true
           },
           "title": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "type": {
             "enum": [
@@ -18709,6 +18947,7 @@
                         "is_allowed_to_move_in_move_object_based_on_role",
                         "can_be_shown_in_diagram",
                         "on_object_creation_is_creator_auto_assigned",
+                        "disable_excel_object_export",
                         "is_user_object_relation_type_favourite",
                         "is_user_object_relation_type_watch",
                         "is_user_object_relation_type_shared_with_me",
@@ -19037,6 +19276,10 @@
         ],
         "type": "object",
         "properties": {
+          "acceptableCodetableValues": {
+            "type": "string",
+            "nullable": true
+          },
           "conditions": {
             "type": "array",
             "items": {
@@ -19134,6 +19377,7 @@
                         "disable_excel_template_export",
                         "is_core_diagram_attribute_knowledge_weight",
                         "is_primary_definition",
+                        "disable_excel_object_export",
                         "is_attribute_type_space_short_description",
                         "is_attribute_type_codelist_table",
                         "is_attribute_type_stereotype",
@@ -19782,6 +20026,7 @@
                         "is_allowed_to_move_in_move_object_based_on_role",
                         "can_be_shown_in_diagram",
                         "on_object_creation_is_creator_auto_assigned",
+                        "disable_excel_object_export",
                         "is_user_object_relation_type_favourite",
                         "is_user_object_relation_type_watch",
                         "is_user_object_relation_type_shared_with_me",
@@ -19913,6 +20158,7 @@
                         "is_allowed_to_move_in_move_object_based_on_role",
                         "can_be_shown_in_diagram",
                         "on_object_creation_is_creator_auto_assigned",
+                        "disable_excel_object_export",
                         "is_user_object_relation_type_favourite",
                         "is_user_object_relation_type_watch",
                         "is_user_object_relation_type_shared_with_me",
@@ -20021,6 +20267,7 @@
                         "is_allowed_to_move_in_move_object_based_on_role",
                         "can_be_shown_in_diagram",
                         "on_object_creation_is_creator_auto_assigned",
+                        "disable_excel_object_export",
                         "is_user_object_relation_type_favourite",
                         "is_user_object_relation_type_watch",
                         "is_user_object_relation_type_shared_with_me",
@@ -20105,6 +20352,7 @@
                         "is_allowed_to_move_in_move_object_based_on_role",
                         "can_be_shown_in_diagram",
                         "on_object_creation_is_creator_auto_assigned",
+                        "disable_excel_object_export",
                         "is_user_object_relation_type_favourite",
                         "is_user_object_relation_type_watch",
                         "is_user_object_relation_type_shared_with_me",
@@ -21425,6 +21673,10 @@
         ],
         "type": "object",
         "properties": {
+          "acceptableCodetableValues": {
+            "type": "string",
+            "nullable": true
+          },
           "action": {
             "minLength": 1,
             "enum": [
@@ -21530,6 +21782,7 @@
                         "disable_excel_template_export",
                         "is_core_diagram_attribute_knowledge_weight",
                         "is_primary_definition",
+                        "disable_excel_object_export",
                         "is_attribute_type_space_short_description",
                         "is_attribute_type_codelist_table",
                         "is_attribute_type_stereotype",
@@ -21639,6 +21892,10 @@
         ],
         "type": "object",
         "properties": {
+          "acceptableCodetableValues": {
+            "type": "string",
+            "nullable": true
+          },
           "action": {
             "minLength": 1,
             "enum": [
@@ -21744,6 +22001,7 @@
                         "disable_excel_template_export",
                         "is_core_diagram_attribute_knowledge_weight",
                         "is_primary_definition",
+                        "disable_excel_object_export",
                         "is_attribute_type_space_short_description",
                         "is_attribute_type_codelist_table",
                         "is_attribute_type_stereotype",
@@ -21931,6 +22189,7 @@
                         "disable_excel_template_export",
                         "is_core_diagram_attribute_knowledge_weight",
                         "is_primary_definition",
+                        "disable_excel_object_export",
                         "is_attribute_type_space_short_description",
                         "is_attribute_type_codelist_table",
                         "is_attribute_type_stereotype",
@@ -22090,6 +22349,7 @@
                         "disable_excel_template_export",
                         "is_core_diagram_attribute_knowledge_weight",
                         "is_primary_definition",
+                        "disable_excel_object_export",
                         "is_attribute_type_space_short_description",
                         "is_attribute_type_codelist_table",
                         "is_attribute_type_stereotype",
@@ -22401,7 +22661,10 @@
               "anonymous_concept_approved",
               "concept_declined",
               "anonymous_concept_declined",
-              "package_synchronize_info"
+              "package_synchronize_info",
+              "lineage_parsing_started",
+              "lineage_parsing_finished",
+              "lineage_parsing_failed"
             ],
             "type": "string",
             "nullable": true
@@ -22590,7 +22853,10 @@
               "anonymous_concept_approved",
               "concept_declined",
               "anonymous_concept_declined",
-              "package_synchronize_info"
+              "package_synchronize_info",
+              "lineage_parsing_started",
+              "lineage_parsing_finished",
+              "lineage_parsing_failed"
             ],
             "type": "string"
           },
@@ -22714,6 +22980,17 @@
           },
           "categoryKey": {
             "minLength": 1,
+            "enum": [
+              "application",
+              "workflow_state",
+              "space",
+              "object_type",
+              "dashboard",
+              "search",
+              "application_logo",
+              "app_icons",
+              "chart"
+            ],
             "type": "string"
           },
           "content": {
@@ -22723,6 +23000,9 @@
           "contentType": {
             "maxLength": 100,
             "minLength": 1,
+            "enum": [
+              "image/svg+xml"
+            ],
             "type": "string"
           },
           "description": {
@@ -23330,7 +23610,7 @@
           "defaultLabels": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PkgGraphDefaultLabels"
+              "$ref": "#/components/schemas/PkgGraphDefaultLabelsVM"
             },
             "nullable": true
           },
@@ -23447,7 +23727,8 @@
               "column",
               "er_object",
               "er_column",
-              "knowledge_object"
+              "knowledge_object",
+              "simple"
             ],
             "type": "string"
           },
@@ -23495,16 +23776,19 @@
         "additionalProperties": false
       },
       "PkgGraphObjectTypeVM": {
+        "required": [
+          "objectTypeKey"
+        ],
         "type": "object",
         "properties": {
           "objectTypeKey": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           }
         },
         "additionalProperties": false
       },
-      "PkgGraphDefaultLabels": {
+      "PkgGraphDefaultLabelsVM": {
         "required": [
           "type",
           "value"
@@ -23577,7 +23861,7 @@
           "defaultLabels": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PkgGraphDefaultLabels"
+              "$ref": "#/components/schemas/PkgGraphDefaultLabelsVM"
             },
             "nullable": true
           },
@@ -23822,7 +24106,8 @@
               "column",
               "er_object",
               "er_column",
-              "knowledge_object"
+              "knowledge_object",
+              "simple"
             ],
             "type": "string",
             "nullable": true
@@ -23921,7 +24206,8 @@
               "column",
               "er_object",
               "er_column",
-              "knowledge_object"
+              "knowledge_object",
+              "simple"
             ],
             "type": "string"
           },
@@ -23997,7 +24283,8 @@
       },
       "PkgPatchGraphObjectTypeDeleteVM": {
         "required": [
-          "action"
+          "action",
+          "objectTypeKey"
         ],
         "type": "object",
         "properties": {
@@ -24010,15 +24297,16 @@
             "readOnly": true
           },
           "objectTypeKey": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           }
         },
         "additionalProperties": false
       },
       "PkgPatchGraphObjectTypeAddVM": {
         "required": [
-          "action"
+          "action",
+          "objectTypeKey"
         ],
         "type": "object",
         "properties": {
@@ -24031,8 +24319,8 @@
             "readOnly": true
           },
           "objectTypeKey": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -26232,6 +26520,44 @@
         },
         "additionalProperties": false
       },
+      "PkgCodetableValueVM": {
+        "required": [
+          "data",
+          "key"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PkgCodetableValueDataVM"
+            }
+          },
+          "key": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PkgCodetableValueDataVM": {
+        "required": [
+          "label",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "label": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "value": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
       "PkgPatchAttributeTypeUpdateVM": {
         "required": [
           "action",
@@ -26239,6 +26565,10 @@
         ],
         "type": "object",
         "properties": {
+          "acceptableCodetableValues": {
+            "type": "string",
+            "nullable": true
+          },
           "action": {
             "minLength": 1,
             "enum": [
@@ -26341,6 +26671,7 @@
                         "disable_excel_template_export",
                         "is_core_diagram_attribute_knowledge_weight",
                         "is_primary_definition",
+                        "disable_excel_object_export",
                         "is_attribute_type_space_short_description",
                         "is_attribute_type_codelist_table",
                         "is_attribute_type_stereotype",
@@ -26512,6 +26843,10 @@
         ],
         "type": "object",
         "properties": {
+          "acceptableCodetableValues": {
+            "type": "string",
+            "nullable": true
+          },
           "action": {
             "minLength": 1,
             "enum": [
@@ -26614,6 +26949,7 @@
                         "disable_excel_template_export",
                         "is_core_diagram_attribute_knowledge_weight",
                         "is_primary_definition",
+                        "disable_excel_object_export",
                         "is_attribute_type_space_short_description",
                         "is_attribute_type_codelist_table",
                         "is_attribute_type_stereotype",
@@ -26818,6 +27154,7 @@
                         "disable_excel_template_export",
                         "is_core_diagram_attribute_knowledge_weight",
                         "is_primary_definition",
+                        "disable_excel_object_export",
                         "is_attribute_type_space_short_description",
                         "is_attribute_type_codelist_table",
                         "is_attribute_type_stereotype",
@@ -26977,6 +27314,7 @@
                         "disable_excel_template_export",
                         "is_core_diagram_attribute_knowledge_weight",
                         "is_primary_definition",
+                        "disable_excel_object_export",
                         "is_attribute_type_space_short_description",
                         "is_attribute_type_codelist_table",
                         "is_attribute_type_stereotype",
@@ -27223,7 +27561,8 @@
                         "copy_paste_as_plaintext_like",
                         "word_diff_use_highlight",
                         "object_workflow_space_admin_as_regular_user",
-                        "move_object_based_on_role"
+                        "move_object_based_on_role",
+                        "export_use_space_app_object_type_check"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -27564,7 +27903,8 @@
                         "copy_paste_as_plaintext_like",
                         "word_diff_use_highlight",
                         "object_workflow_space_admin_as_regular_user",
-                        "move_object_based_on_role"
+                        "move_object_based_on_role",
+                        "export_use_space_app_object_type_check"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -27958,7 +28298,8 @@
                         "copy_paste_as_plaintext_like",
                         "word_diff_use_highlight",
                         "object_workflow_space_admin_as_regular_user",
-                        "move_object_based_on_role"
+                        "move_object_based_on_role",
+                        "export_use_space_app_object_type_check"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -28232,7 +28573,8 @@
                         "copy_paste_as_plaintext_like",
                         "word_diff_use_highlight",
                         "object_workflow_space_admin_as_regular_user",
-                        "move_object_based_on_role"
+                        "move_object_based_on_role",
+                        "export_use_space_app_object_type_check"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -28476,6 +28818,7 @@
                         "word_diff_use_highlight",
                         "object_workflow_space_admin_as_regular_user",
                         "move_object_based_on_role",
+                        "export_use_space_app_object_type_check",
                         "order_number",
                         "color",
                         "one_global_font",
@@ -29472,6 +29815,13 @@
             },
             "nullable": true
           },
+          "codetableValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PkgCodetableValueVM"
+            },
+            "nullable": true
+          },
           "colors": {
             "type": "array",
             "items": {
@@ -29966,6 +30316,7 @@
                         "is_allowed_to_move_in_move_object_based_on_role",
                         "can_be_shown_in_diagram",
                         "on_object_creation_is_creator_auto_assigned",
+                        "disable_excel_object_export",
                         "is_user_object_relation_type_favourite",
                         "is_user_object_relation_type_watch",
                         "is_user_object_relation_type_shared_with_me",
@@ -30134,6 +30485,7 @@
                       "force_confirmation_after_object_move",
                       "copy_paste_as_plaintext_like",
                       "word_diff_use_highlight",
+                      "export_use_space_app_object_type_check",
                       "is_application_data_dictionary",
                       "is_application_code_tables",
                       "is_application_dawiso_objects",
@@ -30265,6 +30617,25 @@
                   },
                   "value": {
                     "$ref": "#/components/schemas/ObjectNumberingOptions"
+                  }
+                }
+              },
+              {
+                "required": [
+                  "key"
+                ],
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "minLength": 1,
+                    "enum": [
+                      "lineage_parsing_options"
+                    ],
+                    "type": "string",
+                    "readOnly": true
+                  },
+                  "value": {
+                    "$ref": "#/components/schemas/LineageParsingOptions"
                   }
                 }
               },
@@ -30526,7 +30897,9 @@
                         "is_relation_in_space",
                         "is_not_presented_in_changes",
                         "can_be_shown_in_diagram",
-                        "is_domain_of"
+                        "is_domain_of",
+                        "disable_excel_template_export",
+                        "disable_excel_object_export"
                       ],
                       "type": "string",
                       "readOnly": true
@@ -30655,7 +31028,9 @@
                       "is_relation_in_space",
                       "is_not_presented_in_changes",
                       "can_be_shown_in_diagram",
-                      "is_domain_of"
+                      "is_domain_of",
+                      "disable_excel_template_export",
+                      "disable_excel_object_export"
                     ],
                     "type": "string",
                     "readOnly": true
@@ -31445,7 +31820,10 @@
               "anonymous_concept_approved",
               "concept_declined",
               "anonymous_concept_declined",
-              "package_synchronize_info"
+              "package_synchronize_info",
+              "lineage_parsing_started",
+              "lineage_parsing_finished",
+              "lineage_parsing_failed"
             ],
             "type": "string"
           },
@@ -31478,6 +31856,17 @@
         "properties": {
           "categoryKey": {
             "minLength": 1,
+            "enum": [
+              "application",
+              "workflow_state",
+              "space",
+              "object_type",
+              "dashboard",
+              "search",
+              "application_logo",
+              "app_icons",
+              "chart"
+            ],
             "type": "string"
           },
           "content": {
@@ -31487,6 +31876,9 @@
           "contentType": {
             "maxLength": 100,
             "minLength": 1,
+            "enum": [
+              "image/svg+xml"
+            ],
             "type": "string"
           },
           "description": {
@@ -31648,7 +32040,7 @@
           "defaultLabels": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PkgGraphDefaultLabels"
+              "$ref": "#/components/schemas/PkgGraphDefaultLabelsVM"
             },
             "nullable": true
           },
@@ -32184,6 +32576,10 @@
         ],
         "type": "object",
         "properties": {
+          "acceptableCodetableValues": {
+            "type": "string",
+            "nullable": true
+          },
           "defaultValue": {
             "type": "string",
             "nullable": true
@@ -32278,6 +32674,7 @@
                         "disable_excel_template_export",
                         "is_core_diagram_attribute_knowledge_weight",
                         "is_primary_definition",
+                        "disable_excel_object_export",
                         "is_attribute_type_space_short_description",
                         "is_attribute_type_codelist_table",
                         "is_attribute_type_stereotype",
@@ -32533,7 +32930,8 @@
                         "copy_paste_as_plaintext_like",
                         "word_diff_use_highlight",
                         "object_workflow_space_admin_as_regular_user",
-                        "move_object_based_on_role"
+                        "move_object_based_on_role",
+                        "export_use_space_app_object_type_check"
                       ],
                       "type": "string",
                       "readOnly": true
